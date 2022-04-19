@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+
+.fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 2px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-facebook {
+  background: #3b5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55acee;
+  color: white;
+}
+
+.topheader {
+  background-color: #add681;
+  text-align: left;
+  background: linear-gradient(to right, rgb(255, 255, 255), #aed581);
+  padding: 5px;
+  text-align: right;
+  color: white;
+  font-size: 15px;
+}
+
+.header {
+  background-color: #add681;
+  padding: 15px;
+  text-align: left;
+  background: linear-gradient(to right, rgb(255, 255, 255), #aed581);
+  padding: 10px;
+  font-size: 30px;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #aed581;
+  color: white;
+  text-align: center;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04aa6d;
+  color: white;
+}
