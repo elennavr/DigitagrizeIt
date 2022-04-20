@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+
+.profile
+{
+    position: relative;
+	float: left;
+    padding: 10px;
+  	border: 1px solid #ccc;
+  	background-color: #f1f1f1;
+  	width: 100%;
+  	height: auto;
+    text-align: center;
+}
+
+.profilepic
+{
+    float: center;
+    text-align: center;
+    border: 8px solid white;
+    padding: 0px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profilepic:hover
+{
+    opacity: 70%;
+}
+
+.middle {
+  position: absolute;
+  transition: .5s ease;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+/* Style the tab */
+.tab {
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 30%;
+  height: 300px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: auto;
+}
+
+</style>
+</head>
+<body>
+
+<div class="tab">
+    <div class="profile">
+            <img class="profilepic" src="profilepic.jpg" alt="profile pic">
+            </img>
+        <h2> Welcome, user</h2>
+    </div>
+
+  <button class="tablinks" onclick="openCity(event, 'Info')" id="defaultOpen">Personal Details</button>
+  <button class="tablinks" onclick="openCity(event, 'Products')">Products</button>
+  <button class="tablinks" onclick="openCity(event, 'Land')">Land/Property</button>
+  <button class="tablinks" onclick="openCity(event, 'Settings')">Account Settings</button>
+</div>
+
+<div id="Info" class="tabcontent">
+  <h2>Account Details</h2>
+
+  <table>
+    <tr>
+        <td>
+            <h4> Username </h4>
+            <input type="text" id="input-username" placeholder="Username" value="supercool_username">
+        </td>
+        <td>
+            <h4> Email Address</h4>
+            <input type="text" id="input-email" placeholder="email@mail.com" value="supercoolfarmer@gmail.com" disabled>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4> First Name</h4>
+            <input type="text" id="input-fname" placeholder="First name" value="John" disabled>
+        </td>
+        <td>
+            <h4> Last Name</h4>
+            <input type="text" id="input-lname" placeholder="Last name" value="Farmer" disabled>
+        </td>
+    </tr>
+  </table>
+
+  <h4> About me</h4>
+  <textarea rows="4" id="input-aboutme" style="width: 50%;" placeholder="A few words about you ...">I'm a super cool farmer, wanna see my products?</textarea>
+
+  <h2>Contact Information</h2>
+
+  <table>
+    <tr>
+        <td>
+            <h4>Address</h4>
+            <input type="text" id="input-address" placeholder="Street, Number, Region" value="Dromos 24 Analipsi">
+        </td>
+        <td>
+            <h4>City</h4>
+            <input type="text" id="input-city" placeholder="City" value="Thessaloniki">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4>Country</h4>
+            <input type="text" id="input-country" placeholder="Country" value="Greece">
+        </td>
+        <td>
+            <h4>Postal Code</h4>
+            <input type="text" id="input-postcode" placeholder="Postcode" value="12345">
+        </td>
+    </tr>
+  </table>
+
+  <h4>Phone Number</h4>
+  <input type="text" id="input-phone" placeholder="Number" value="+306909876543">
+
+</div>
+
+<div id="Products" class="tabcontent">
+  <h3>Products</h3>
+  <p>Paris is the capital of France.</p> 
+</div>
+
+<div id="Land" class="tabcontent">
+  <h3>Land/Property</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+<div id="Settings" class="tabcontent">
+    <h3>Account Settings</h3>
+    <p>Tokyo is the capital of Japan.</p>
+  </div>
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 
