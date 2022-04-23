@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="mainLS.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="tab" id="first">
+        <h2 align="center">Welcome Back!</h2>
+        <img class="logo" src="compLogo.png" />
+      </div>
+      <div class="tab" id="second">
+        <h2 align="center">Login</h2>
+        <p align="center">Or <a href="#">create an account</a>!</p>
+
+        <h4 class="centerCrec">Username</h4>
+        <input
+          class="centerCrec"
+          type="text"
+          placeholder="Username"
+          value="supercool_username"
+          id="myUSRNM"
+          required
+        />
+        <br />
+        <h4 class="centerCrec">Password</h4>
+        <input
+          class="centerCrec"
+          type="password"
+          placeholder="password"
+          value="password"
+          id="myPSW"
+          required
+        /><br />
+        <input class="centerCrec" type="checkbox" onclick="showPSW()" />Show
+        Password <br /><br />
+        <button class="button center" href="#">Login</button>
+        <p class="centerPSW">Forgot <a href="#">password</a>?</p>
+      </div>
+    </div>
+
+    <script>
+      function showPSW() {
+        var x = document.getElementById("myPSW");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+    </script>
+  </body>
+</html>
