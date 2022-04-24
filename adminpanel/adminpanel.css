@@ -109,6 +109,8 @@ body {font-family: "Lato", sans-serif;}
   display: block;
   border: none; 
   background-color: white;
+  cursor: pointer;
+  margin: 10px;
 }
 
 .databasecontainer
@@ -117,12 +119,11 @@ body {font-family: "Lato", sans-serif;}
     width: fit-content;
     height: 100%;
     border: 10px solid darkgray;
+    margin-bottom: 10px;
 }
 
 .database-toolbar
 {
-    float: center;
-    display: block;
     text-align: right;
     padding: 5px;
 }
@@ -226,4 +227,30 @@ body {font-family: "Lato", sans-serif;}
 {
     float: center;
     display: block;
+}
+
+.database-header-container
+{
+  position: relative;
+  float: center;
+}
+
+.header-button
+{
+  float: center;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#search-bar-database {
+  background-image: url('/PSPI/search-line.png'); /* Add a search icon to input */
+  background-position: 2px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  background-size: 20px 20px;
+  padding-left: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid #ddd; /* Add a grey border */
 }
