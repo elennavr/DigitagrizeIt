@@ -1,6 +1,158 @@
 * {box-sizing: border-box}
 body {font-family: "Lato", sans-serif;}
 
+
+/* FOR MOBILE DEVICES: */
+@media only screen and (max-width: 640px) {
+  
+  .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+  }
+
+  .tab button {
+    background-color: inherit;
+    float: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+    padding: 16px 16px;
+  }
+
+  .tabcontent {
+    float: left;
+    width: 100%;
+    border-left: none;
+    height: auto;
+    margin: 10px;
+  }
+
+  .tablinks
+  {
+    text-align: center;
+    align-items: center;
+  }
+
+  .tab-container
+  {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin: auto;
+  }
+
+  .prof-text
+  {
+    display: none;
+  }
+
+   .databasecontainer
+  {
+      background-color: darkgray;
+      width: 100%;
+      height: 100%;
+      border: 10px solid darkgray;
+      margin-bottom: 10px;
+  }
+
+}
+
+/* FOR LARGER SCREENS */
+@media only screen and (min-width: 641px) {
+
+  .prof-icon
+  {
+    max-width: 20px;
+    max-height: 20px;
+    margin: 5px;
+    float: left;
+  }
+
+  .prof-text
+  {
+    float: center;
+    text-align: center;
+  }
+
+  /* Style the tab */
+  .tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: fit-content;
+    height: 100%;
+  }
+
+  /* Style the buttons inside the tab */
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+
+  .tab-container
+  {
+    float: left;
+    text-align: left;
+    width: fit-content;
+    height: 100%;
+    position: relative;
+  }
+
+    /* Style the tab content */
+  .tabcontent {
+    float: left;
+    width: fit-content;
+    border-left: none;
+    height: auto;
+    margin: 10px 10px;
+  }
+
+  .databasecontainer
+  {
+      background-color: darkgray;
+      width: 100%;
+      height: 100%;
+      border: 10px solid darkgray;
+      margin-bottom: 10px;
+  }
+
+  .database-toolbar
+  {
+      float: right center;
+      text-align: right;
+      padding: 5px;
+      width: 100%;
+  }
+
+}
+
+
+.info-table table
+{
+  overflow-x:auto; 
+  overflow-y: auto;
+  width: 100%;
+  border-spacing: 20px;  
+}
+
 .profile
 {
     position: relative;
@@ -27,8 +179,8 @@ body {font-family: "Lato", sans-serif;}
     text-align: center;
     border: 8px solid white;
     padding: 0px;
-    width: 150px;
-    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
     border-radius: 50%;
     transition: .5s ease;
 }
@@ -60,29 +212,6 @@ body {font-family: "Lato", sans-serif;}
   padding: 16px 32px;
 }
 
-/* Style the tab */
-.tab {
-  float: left;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  width: 30%;
-  height: 100%;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-  display: block;
-  background-color: inherit;
-  color: black;
-  padding: 22px 16px;
-  width: 100%;
-  border: none;
-  outline: none;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 17px;
-}
 
 /* Change background color of buttons on hover */
 .tab button:hover {
@@ -94,16 +223,6 @@ body {font-family: "Lato", sans-serif;}
   background-color: #ccc;
 }
 
-/* Style the tab content */
-.tabcontent {
-  float: left;
-  padding: 0px 12px;
-  border: 1px solid #ccc;
-  width: 70%;
-  border-left: none;
-  height: auto;
-}
-
 .settingbutton
 {
   display: block;
@@ -113,25 +232,9 @@ body {font-family: "Lato", sans-serif;}
   margin: 10px;
 }
 
-.databasecontainer
-{
-    background-color: darkgray;
-    width: fit-content;
-    height: 100%;
-    border: 10px solid darkgray;
-    margin-bottom: 10px;
-}
-
-.database-toolbar
-{
-    text-align: right;
-    padding: 5px;
-}
-
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
 }
 
 #customers td, #customers th {
@@ -140,6 +243,7 @@ body {font-family: "Lato", sans-serif;}
 }
 
 #customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:nth-child(odd){background-color: lightgrey;}
 
 #customers tr:hover {background-color: #ddd;}
 
@@ -150,6 +254,7 @@ body {font-family: "Lato", sans-serif;}
   background-color: #04AA6D;
   color: white;
   display: incline;
+  width: fit-content;
 }
 
 .dropbtn {
@@ -190,13 +295,10 @@ body {font-family: "Lato", sans-serif;}
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  top: 0;
+  left: 0;
 }
 
 /* Modal Content */
@@ -245,12 +347,32 @@ body {font-family: "Lato", sans-serif;}
 }
 
 #search-bar-database {
-  background-image: url('/PSPI/search-line.png'); /* Add a search icon to input */
+  background-image: url('/search-line.png'); /* Add a search icon to input */
   background-position: 2px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
   background-size: 20px 20px;
   padding-left: 25px;
   padding-top: 5px;
-  padding-bottom: 5px;
   border: 1px solid #ddd; /* Add a grey border */
+  display: inline;
+  float: center;
+}
+
+.action-buttons button{
+  
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#myBtn
+{
+  float: center;
+  border: none;
+  background: white;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  display: inline;
+  padding: 2px;
 }

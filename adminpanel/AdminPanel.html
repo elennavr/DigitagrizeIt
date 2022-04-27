@@ -8,78 +8,106 @@
 </head>
 <body>
 
-<div class="tab">
-    <div class="profile">
-      <div class="profilepiccontainer">
-        <img class="profilepic" src="profilepic.jpg" alt="profile pic">
-        <img src="edit-pngrepo-com.png" class="changepic" alt="change profile pic icon"></img>
-      </div>     
-      <h2> Welcome, admin</h2>
-    </div>
+  <div class="tab">
+        <div class="profile">
+        <div class="profilepiccontainer">
+            <img class="profilepic" src="profilepic.jpg" alt="profile pic">
+            <button>
+                <img src="edit-pngrepo-com.png" class="changepic" alt="change profile pic icon"></img>
+            </button>
+        </div>     
+        <h2> Welcome, admin</h2>
+        </div>
 
-  <button class="tablinks" onclick="openProfileTab(event, 'Info')" id="defaultOpen">Personal Details</button>
-  <button class="tablinks" onclick="openProfileTab(event, 'Demographics')">Demographics</button>
-  <button class="tablinks" onclick="openProfileTab(event, 'Users')">Users</button>
-  <button class="tablinks" onclick="openProfileTab(event, 'Listings')">Listings</button>
-  <button class="tablinks" onclick="openProfileTab(event, 'Settings')">Account Settings</button>
-</div>
+        <button class="tablinks" onclick="openProfileTab(event, 'Info')" id="defaultOpen">
+            <span class="prof-text">Personal Details</span>
+            <span class="prof-icon"><img src="personal-info.png" alt="profile info icon" style="width: 20px; height: 20px;"/></span>
+        </button>
+        
+        <button class="tablinks" onclick="openProfileTab(event, 'Demographics')">
+            <span class="prof-text">Demographics</span>
+            <span class="prof-icon"><img src="chart.png" alt="profile info icon" style="width: 20px; height: 20px;"/></span>
+        </button>
+        
+        <button class="tablinks" onclick="openProfileTab(event, 'Users')">
+            <span class="prof-text">Users</span>
+                <span class="prof-icon"><img src="users.png" alt="profile info icon" style="width: 20px; height: 20px;"/></span>
+            </button>
+        <button class="tablinks" onclick="openProfileTab(event, 'Listings')">
+            <span class="prof-text">Listings</span>
+                <span class="prof-icon"><img src="farm-land.png" alt="profile info icon" style="width: 20px; height: 20px;"/></span>
+            </button>
+        <button class="tablinks" onclick="openProfileTab(event, 'Settings')">
+            <span class="prof-text">Account Settings</span>
+                <span class="prof-icon"><img src="settings-gear.png" alt="profile info icon" style="width: 20px; height: 20px;"/></span>
+            </button>
+    </div>
 
 <div id="Info" class="tabcontent">
   <h2>Account Details</h2>
-  <table>
-    <tr>
-        <td>
-            <h4> Username </h4>
-            <input type="text" id="input-username" placeholder="Username" value="supercool_username">
-        </td>
-        <td>
-            <h4> Email Address</h4>
-            <input type="text" id="input-email" placeholder="email@mail.com" value="supercoolfarmer@gmail.com" disabled>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h4> First Name</h4>
-            <input type="text" id="input-fname" placeholder="First name" value="John" disabled>
-        </td>
-        <td>
-            <h4> Last Name</h4>
-            <input type="text" id="input-lname" placeholder="Last name" value="Farmer" disabled>
-        </td>
-    </tr>
-  </table>
 
-  <h4> About me</h4>
-  <textarea rows="4" id="input-aboutme" style="width: 50%;" placeholder="A few words about you ...">I'm a super cool farmer, wanna see my products?</textarea>
+  <div class="info-table">
+    <table>
+        <tr>
+            <td>
+                <h4> Username </h4>
+                <input type="text" id="input-username" placeholder="Username" value="supercool_username">
+            </td>
+            <td>
+                <h4> Email Address</h4>
+                <input type="text" id="input-email" placeholder="email@mail.com" value="supercoolfarmer@gmail.com" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4> First Name</h4>
+                <input type="text" id="input-fname" placeholder="First name" value="John" disabled>
+            </td>
+            <td>
+                <h4> Last Name</h4>
+                <input type="text" id="input-lname" placeholder="Last name" value="Farmer" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4> About me</h4>
+                <textarea rows="4" id="input-aboutme" style="width: 100%;" placeholder="A few words about you ...">I'm a super cool farmer, wanna see my products?</textarea>
+            </td>
+        </tr>
+    </table>
+  </div>
 
+  
   <h2>Contact Information</h2>
-
-  <table>
-    <tr>
-        <td>
-            <h4>Address</h4>
-            <input type="text" id="input-address" placeholder="Street, Number, Region" value="Dromos 24 Analipsi">
-        </td>
-        <td>
-            <h4>City</h4>
-            <input type="text" id="input-city" placeholder="City" value="Thessaloniki">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h4>Country</h4>
-            <input type="text" id="input-country" placeholder="Country" value="Greece">
-        </td>
-        <td>
-            <h4>Postal Code</h4>
-            <input type="text" id="input-postcode" placeholder="Postcode" value="12345">
-        </td>
-    </tr>
-  </table>
-
-  <h4>Phone Number</h4>
-  <input type="text" id="input-phone" placeholder="Number" value="+306909876543">
-
+  <div class="info-table">
+    <table>
+        <tr>
+            <td>
+                <h4>Address</h4>
+                <input type="text" id="input-address" placeholder="Street, Number, Region" value="Dromos 24 Analipsi">
+            </td>
+            <td>
+                <h4>City</h4>
+                <input type="text" id="input-city" placeholder="City" value="Thessaloniki">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Country</h4>
+                <input type="text" id="input-country" placeholder="Country" value="Greece">
+            </td>
+            <td>
+                <h4>Postal Code</h4>
+                <input type="text" id="input-postcode" placeholder="Postcode" value="12345">
+            </td>
+        </tr>
+        <tr>
+            <h4>Phone Number</h4>
+            <input type="text" id="input-phone" placeholder="Number" value="+306909876543">
+        </tr>
+    </table>
+  </div>
+  
 </div>
 
 <div id="Demographics" class="tabcontent">
@@ -96,10 +124,10 @@
   <div class="databasecontainer">
         <div class="database-toolbar">
             <input type="input" type="text" placeholder="Search.." id="search-bar-database">
-
             <button id="myBtn">
-                <img src="filter-2-fill.png" alt="filter button">
+                <img src="filter-2-fill.png" alt="filter button" style="width: 20px; height: 20px;">
             </button>
+
             <!-- The Modal -->
             <div id="myModal" class="modal"> 
                 <!-- Modal content -->
@@ -110,7 +138,7 @@
             </div>
         </div>
         
-        <div style="overflow-x:auto; overflow-y: auto;">
+        <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
             <table id="customers">
                 <tr> 
                     <th>
