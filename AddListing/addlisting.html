@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="addlisting.css" type="text/css">
+
+</head>
+<body>
+
+  <div class="tab">
+
+    <div class="progressbarcontainer">
+        <div class="circular">
+            <div class="inner"></div>
+            <div class="progressbar-icon">
+                <img src="favicon.png" alt = "progress bar logo" style="width: 60px; height: 60px;">
+            </div>
+            <div class="circle">
+            <div class="bar left">
+                <div class="progress"></div>
+            </div>
+            <div class="bar right">
+                <div class="progress"></div>
+            </div>
+            </div>
+        </div>
+        <h5><div class="number">100%</div> has been completed</h5>
+        <h5>Fill out the necessary fields</h5>
+    </div>
+
+        <button class="tablinks" onclick="openProfileTab(event, 'Category')" id="defaultOpen">
+            <span class="prof-text">Category</span>
+            <span class="prof-icon">
+                <img src="accept.png" alt="marked completed icon" style="width: 15px; height: 15px;">
+            </span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:100%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openProfileTab(event, 'Location')">
+            <span class="prof-text">Location</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:20%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openProfileTab(event, 'Basic Characteristics')">
+            <span class="prof-text">Basic Characteristics</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openProfileTab(event, 'Extra Information')">
+            <span class="prof-text">Extra Information</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openProfileTab(event, 'Description')">
+            <span class="prof-text">Description</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+
+        <button class="tablinks" onclick="openProfileTab(event, 'Media')">
+            <span class="prof-text">Media</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+
+        <button class="tablinks" onclick="openProfileTab(event, 'Contact Information')">
+            <span class="prof-text">Contact Information</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+
+        <button class="tablinks" onclick="openProfileTab(event, 'Publish')">
+            <span class="prof-text">Publish</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+    </div>
+
+<div id="Category" class="tabcontent">
+    <h2>Category</h2>
+
+    <p>Choose the listing's category</p>
+
+    <input type="radio" id="product" name="list_category" value="Product">
+    <label for="html">Product</label>
+    <input type="radio" id="land" name="list_category" value="Land/Property">
+    <label for="css">Land/Property</label>
+    <br>
+    <button class="continue-button" type="submit">Continue</button>
+
+</div>
+
+<div id="Location" class="tabcontent">
+  <h2>Location</h2>
+  
+</div>
+
+<div id="Basic Characteristics" class="tabcontent">
+    <h2>Basic Characteristics</h2>
+</div>
+
+<div id="Extra Information" class="tabcontent">
+    <h2>Extra Information</h2>
+</div>
+
+<div id="Description" class="tabcontent">
+    <h2>Description</h2>
+    <p>Give more information about your listing in the following box.</p>
+    <textarea maxlength="2000" rows="10" style="width: 100%;">Enter description here...</textarea>
+</div>
+
+<div id="Media" class="tabcontent">
+    <h2>Media</h2>
+    <p>Select up to 6 images showing your listing.</p>
+    <form action="/action_page.php">
+        <label for="img">Select images:</label>
+        <input type="file" id="img" name="img" accept="image/*" multiple>
+        <input type="submit">
+      </form>
+  </div>
+
+  <div id="Contact Information" class="tabcontent">
+    <h2>Contact Information</h2>
+    <p>This contact information will be visible to anyone who can see this listing.</p>
+
+    <h4>First Name</h4>
+    <input
+        type="text"
+        placeholder="none"
+        value="John"
+        id="firstname"
+        disabled
+      />
+      <br />
+      
+      <h4>Last Name</h4>
+      <input
+        type="text"
+        placeholder="none"
+        value="Farmer"
+        id="lastname"
+        disabled
+      />
+
+      <br />
+      <h4>E-mail</h4>
+      <input
+        type="text"
+        placeholder="none"
+        value="john@farmer.com"
+        id="myMAIL"
+        required
+      />
+
+      <br />
+      <h4>Phone Number</h4>
+      <input
+        type="text"
+        placeholder="none"
+        value="6912345678"
+        id="myPN"
+        required
+      />
+
+      <br />
+      <h4>Available:</h4>
+      <form action="#">
+        <select name="availhours" id="availhours">
+          <option value="allday">All day</option>
+          <option value="morning">In the morning</option>
+          <option value="noon">At noon</option>
+          <option value="afternoon">In the afternoon</option>
+          <option value="night">At night</option>
+        </select>
+      </form>
+
+  </div>
+
+  <div id="Publish" class="tabcontent">
+    <h2>Publish</h2>
+    <p>Your listing should comply with the website's terms and conditions.</p>
+    <br>
+    <button class="continue-button">Publish</button>
+  </div>
+
+<script>
+function openProfileTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+    
+    <script>
+        const numb = document.querySelector(".number");
+        let counter = 0;
+        setInterval(() => {
+        if(counter == 100 ){
+            clearInterval();
+        }else{
+            counter+=1;
+        numb.textContent = counter + "%";
+        }
+            }, 80);
+    </script>
+
+    <script>
+        $(function(){
+            $("input[type = 'submit']").click(function(){
+            var $fileUpload = $("input[type='file']");
+            if (parseInt($fileUpload.get(0).files.length) > 6){
+                alert("You are only allowed to upload a maximum of 6 files");
+            }
+        });
+    });
+ </script>
+
+</body>
+</html> 
