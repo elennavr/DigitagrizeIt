@@ -3,12 +3,32 @@
 }
 
 body {
+  background: linear-gradient(-45deg, #ee7752, #ff7332, #72d859, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
   font-family: "Lato", sans-serif;
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .tab {
-  border: 1px solid #ccc;
+  margin: 0 auto;
+  margin-top: 200px;
+  border: 1px solid #ff8d0a;
   background-color: #ffffff;
+  width: 450px;
+  box-shadow: 0 10px 10px rgb(109, 55, 20);
+  color: rgb(150, 83, 1);
 }
 
 .centerCrec {
