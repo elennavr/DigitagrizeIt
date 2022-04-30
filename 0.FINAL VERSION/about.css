@@ -1,8 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 .wrapper {
-  margin-top: 60px;
+  margin-top: 3%;
   background: none;
   display: grid;
-  grid-auto-rows: 300px;
+  grid-auto-rows: 15%;
   grid-auto-columns: 500px;
   grid-template-columns: 50% 50%;
   grid-row-gap: 3em;
@@ -16,15 +20,17 @@
 
 .image {
   align-self: center;
+  margin-left: 20%;
   height: 100%;
-  width: 80%;
+  width: 70%;
 }
 
 .text {
   height: 100%;
   width: 80%;
   align-self: stretch;
-  margin-top: 50px auto;
+  margin-top: 7%;
+  margin-left:  15%;
   font-family: "Montserrat", sans-serif;
   font-size: 12;
   color: #2b2828;

@@ -1,6 +1,7 @@
 body{
     font-family: "Montserrat", sans-serif;
     background-color: #cfe4b9;
+    margin-left: 50%;
 }
 .faq-heading{
     border-bottom: #777;
@@ -29,8 +30,8 @@ flex-direction: column;
 }
 .faq-body{
     margin: auto;
-   width: 50%; 
-   padding: auto;
+    width: 60%; 
+    padding: auto;
    
 }
 

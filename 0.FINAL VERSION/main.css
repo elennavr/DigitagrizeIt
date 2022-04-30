@@ -89,7 +89,7 @@ a:hover {
   flex-wrap: wrap;
   flex-direction: row;
   width: 100%;
-  height: 2000px;
+  height: 100%;
 }
 .faq-area,
 .contact-area {
@@ -100,7 +100,7 @@ a:hover {
   flex-wrap: wrap;
   flex-direction: row;
   width: 100%;
-  height: 1000px;
+  height: 100%;
 }
 
 .about-area {
