@@ -1,0 +1,264 @@
+input[type="text"] {
+    width: 30%;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+  
+  input[type="number"] {
+    width: 10%;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+
+input[type="password"] {
+  width: 30%;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+  
+  input[type="password"]:focus {
+    border: 3px solid rgb(255, 134, 54);
+  }
+  
+  input[type="text"]:focus {
+    border: 3px solid rgb(255, 134, 54);
+  }
+
+/* FOR MOBILE DEVICES: */
+@media only screen and (max-width: 640px) {
+  
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+
+      box-shadow: 0 10px 10px rgb(109 55 20);
+      color: rgb(150, 83, 1);
+    }
+  
+    .tab button {
+      background-color: inherit;
+      float: center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 17px;
+      padding: 16px 16px;
+    }
+  
+    .tabcontent {
+      float: left;
+      width: 100%;
+      border-left: none;
+      height: auto;
+      margin: 0 auto;
+      padding: 20px;
+
+      border: 1px solid #ccc;
+      background-color: #ffffff;
+      box-shadow: 0 10px 10px rgb(109, 55, 20);
+      color: rgb(150, 83, 1);
+
+    }
+  
+    .tablinks
+    {
+      text-align: center;
+      align-items: center;
+    }
+  
+    .tab-container
+    {
+      width: 100%;
+      position: relative;
+      display: block;
+      margin: auto;
+    }
+  
+    .prof-text
+    {
+      display: none;
+    }
+  
+    .info-table table
+    {
+      overflow-x:auto; 
+      overflow-y: auto;
+      width: 100%;
+      border-spacing: 20px;
+    }
+  
+    .info-table tr {
+      display: inline-flex;
+      flex-direction: column;
+    }
+  
+  }
+  
+  /* FOR LARGER SCREENS */
+  @media only screen and (min-width: 641px) {
+  
+    .tab-icon
+    {
+      max-width: 20px;
+      max-height: 20px;
+      float: left;
+      margin-right: 5px;
+    }
+  
+    .completed-icon
+    {
+      max-width: 20px;
+      max-height: 20px;
+      float: right;
+    }
+  
+  .prof-text
+  {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    float: center;
+    text-align: center;
+  }
+  
+    /* Style the tab */
+  .tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 20%;
+    height: fit-content;
+
+    box-shadow: 0 10px 10px rgb(109 55 20);
+    color: rgb(150, 83, 1);
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: rgb(150, 83, 1);
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    float: left;
+    padding: 20px 20px;
+    border: 1px solid #ccc;
+    width: 80%;
+    border-left: none;
+    height: fit-content;
+    background-color: #ffffff;
+    box-shadow: 0 10px 10px rgb(109 55 20);
+    color: rgb(150, 83, 1);
+  }
+  
+  .tab-container
+  {
+    float: left;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+    .info-table table
+    {
+      overflow-x:auto; 
+      overflow-y: auto;
+      width: 100%;
+      border-spacing: 20px;
+    }
+  
+  }
+  
+  .tab-head
+    {
+        position: relative;
+	      float: center;
+        padding: 10px;
+  	    border: 2px solid #ccc;
+  	    background-color: lightgrey;
+  	    width: 100%;
+  	    height: auto;
+        text-align: center;
+    }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab button.active {
+    background-color: darkgrey;
+  }
+
+  select
+  {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    width: 30%;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+  }
+
+  option
+  {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+  }
+
+  textarea
+  {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+
+  }
