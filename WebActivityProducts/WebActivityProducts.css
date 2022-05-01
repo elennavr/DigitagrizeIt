@@ -138,6 +138,7 @@ a:hover {
 .product-img img{
   width: 100%;
   border-radius: 15px;
+  box-shadow: 10px 10px 10px #88888836;
 }
 
 .product-info{
@@ -239,6 +240,7 @@ a:hover {
 
 .viewmorefilters a{
   text-decoration: none;
+  color: #689f38;
 }
 
 /*-------------footer--------------*/
