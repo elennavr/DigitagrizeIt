@@ -1,7 +1,10 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;}  
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}  
 
 html{
     font-size: 10px;
@@ -64,7 +67,6 @@ body{
 .slides-show-text h5{
     font-size: 5rem;
     text-align: center;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 2.5rem;
@@ -73,7 +75,6 @@ body{
 .slides-show-text p{
     font-size: 2rem;
     text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     letter-spacing: 1px;
     font-weight: 200;
 }
