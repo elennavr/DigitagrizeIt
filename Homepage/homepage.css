@@ -260,3 +260,44 @@ body{
                 margin: -50px; 
                 }
 }
+
+@media screen and (max-width: 680px){
+    
+    .slides-show-text{
+    max-width: 100%;
+    position: fixed;
+    transform: initial;
+    max-height: 18%;
+
+}
+
+    .slides-show-text h5{
+        font-size: 1.6rem;}
+
+    .slides-show-text p{
+        text-align: center;
+        font-size: 0.8rem;}
+
+        .button1{
+            display: inline-block;
+            border-radius: 50px;
+            font-size: 16px;
+            padding: 20px;
+            width: 100px;
+            cursor: pointer;
+            margin: -50px;
+            transform: translateY(80px);
+            
+            }
+        
+            .button2{
+                display: inline-block;
+                border-radius: 50px;
+                font-size: 16px;
+                padding: 20px;
+                width: 100px;
+                cursor: pointer;
+                margin: -50px; 
+                transform: translateY(80px);                
+            }
+}
