@@ -103,7 +103,8 @@ body{
     width: 300px;
     transition: all 0.4s;
     cursor: pointer;
-    margin: 10px; 
+    margin: 10px;
+    box-shadow: 0 10px 10px #1f1e1a;
 }
 
 .button1 span {
@@ -144,7 +145,8 @@ body{
     width: 300px;
     transition: all 0.4s;
     cursor: pointer;
-    margin: 15px; 
+    margin: 15px;
+    box-shadow: 0 10px 10px #1f1e1a;
 }
 
 .button2 span {
