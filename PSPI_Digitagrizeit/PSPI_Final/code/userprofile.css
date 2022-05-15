@@ -1,0 +1,204 @@
+* {box-sizing: border-box}
+
+body
+{
+    font-family: "Montserrat";
+    font-weight: bold;
+    background-color: #4CAF50;
+}
+
+/* FOR MOBILE DEVICES: */
+@media only screen and (max-width: 640px) {
+
+   .databasecontainer
+  {
+      background-color: darkgray;
+      width: 100%;
+      height: 100%;
+      border: 10px solid darkgray;
+      margin-bottom: 10px;
+  }
+
+  .profilepic
+  {
+    width: 40vw;
+    height: 40vw;   
+  }
+
+}
+
+/* FOR LARGER SCREENS */
+@media only screen and (min-width: 641px) {
+
+  .databasecontainer
+  {
+      background-color: darkgray;
+      height: fit-content;
+      border: 10px solid darkgray;
+      margin-bottom: 10px;
+      float: right;
+      width: 100%;
+      display: block;
+      position: relative;
+  }
+
+  .database-toolbar
+  {
+      float: left;
+      text-align: left;
+      padding: 5px;
+      width: 100%;
+  }
+
+  .profilepic
+  {
+    width: 15vw;
+    height: 15vw;   
+  }
+}
+
+.profilepiccontainer {
+  position: relative;
+  float: center;
+  display: block;
+  position: relative;
+  text-align: center;
+}
+
+.profilepiccontainer .changepic {
+  opacity: 0;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.profilepic
+{
+    position: relative;
+    float: center;
+    text-align: center;
+    border: 8px solid white;
+    padding: 0px;
+    border-radius: 50%;
+}
+
+.profilepiccontainer:hover .profilepic {
+  opacity: 0.4;
+}
+
+.profilepiccontainer:hover .changepic {
+  opacity: 0.8;
+  background: transparent;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+#database td, #database th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#database th:first-of-type {
+  border-top-left-radius: 10px;
+}
+#database th:last-of-type {
+  border-top-right-radius: 10px;
+}
+
+#database tr:last-of-type td:first-of-type {
+  border-bottom-left-radius: 10px;
+}
+#database tr:last-of-type td:last-of-type {
+  border-bottom-right-radius: 10px;
+}
+
+#database tr:nth-child(even){background-color: #f2f2f2;}
+#database tr:nth-child(odd){background-color: lightgrey;}
+#database tr:hover {background-color: #ddd;}
+
+#database th {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: left;
+  background-color:#4CAF50;
+  color: white;
+  display: incline;
+  width: fit-content;
+}
+
+.action-buttons
+{
+    float: center;
+    display: block;
+}
+
+.header-button
+{
+  float: center;
+  text-align: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#search-bar-database {
+  background-image: url('../images/icons/search-line.png'); /* Add a search icon to input */
+  background-position: 2px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  background-size: 20px 20px;
+  padding-left: 25px;
+  padding-top: 5px;
+  border: 1px solid #ddd; /* Add a grey border */
+  display: inline;
+  float: center;
+  width: 20%;
+}
+
+.action-buttons button{
+  
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.filter_button
+{
+  float: center;
+  border: none;
+  background: white;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  display: inline;
+  padding: 2px;
+}
+
+.table-image
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.add-button
+{
+  float: right;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.add-button:hover
+{
+  opacity: 0.7;
+}
