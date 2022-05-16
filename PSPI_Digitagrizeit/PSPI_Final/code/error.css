@@ -1,0 +1,27 @@
+.error_text
+{
+    float: right;
+    font-family: "Montserrat";
+    font-weight: bold;
+    padding: 20px;
+}
+
+.error_icon
+{
+    float: left;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+    padding: 20px;
+}
+
+.container
+{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
