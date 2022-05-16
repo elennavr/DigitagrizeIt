@@ -19,89 +19,100 @@
       <h2 align="center">Sign Up</h2>
       <br></div>
      
-      <h4 class="centerCrec">Username</h4>
-      <input
-        class="centerCrec"
-        type="text"
-        placeholder="none"
-        value="supercool_username"
-        id="myUSRNM"
-        required
-      />
-      <br />
-      <h4 class="centerCrec">Pasword</h4>
-      <input
-        class="centerCrec"
-        type="password"
-        placeholder="none"
-        value="password"
-        id="myPSW"
-        required
-      />
-      <input class="centerCrec" type="checkbox" onclick="showPSW()" />Show
-        Password
-      <br />
-      <h4 class="centerCrec">Password (again)</h4>
-      <input
-        class="centerCrec"
-        type="password"
-        placeholder="none"
-        value="password"
-        id="myPSW"
-        required
-      />
-      <br />
-      <h4 class="centerCrec">First Name</h4>
-      <input
-        class="centerCrec"
-        type="text"
-        placeholder="none"
-        value="John"
-        id="myFN"
-        required
-      />
-      <br />
-      <h4 class="centerCrec">Last Name</h4>
-      <input
-        class="centerCrec"
-        type="text"
-        placeholder="none"
-        value="Farmer"
-        id="myLN"
-        required
-      />
-      <br />
-      <h4 class="centerCrec">Address</h4>
-      <input
-        class="centerCrec"
-        type="text"
-        placeholder="none"
-        value="address 1"
-        id="myADD"
-        required
-      />
-      <br />
-      <h4 class="centerCrec">E-mail</h4>
-      <input
-        class="centerCrec"
-        type="text"
-        placeholder="none"
-        value="john@farmer.com"
-        id="myMAIL"
-        required
-      />
-      <br />
-      <h4 class="centerCrec">Phone Number</h4>
-      <input
-        class="centerCrec"
-        type="text"
-        placeholder="none"
-        value="6912345678"
-        id="myPN"
-        required
-      />
-      <br /><bR><bR>
-      <button class="button" href="#">Sign Up</button>
+      <form action="register.php" method="post">
+        <h4 class="centerCrec">Username</h4>
+        <input
+          class="centerCrec"
+          type="text"
+          placeholder="none"
+          value="supercool_username"
+          name="username"
+          id="myUSRNM"
+          required
+        />
+        <br />
+        <h4 class="centerCrec">Password</h4>
+        <input
+          class="centerCrec"
+          type="password"
+          placeholder="none"
+          value="password"
+          name="password1"
+          id="myPSW"
+          required
+        />
+        <input class="centerCrec" type="checkbox" onclick="showPSW()" />Show
+          Password
+        <br />
+        <h4 class="centerCrec">Password (again)</h4>
+        <input
+          class="centerCrec"
+          type="password"
+          placeholder="none"
+          value="password"
+          name="password2"
+          id="myPSW"
+          required
+        />
+        <br />
+        <h4 class="centerCrec">First Name</h4>
+        <input
+          class="centerCrec"
+          type="text"
+          placeholder="none"
+          value="John"
+          name="first_name"
+          id="myFN"
+          required
+        />
+        <br />
+        <h4 class="centerCrec">Last Name</h4>
+        <input
+          class="centerCrec"
+          type="text"
+          placeholder="none"
+          value="Farmer"
+          name="last_name"
+          id="myLN"
+          required
+        />
+        <br />
+        <h4 class="centerCrec">Address</h4>
+        <input
+          class="centerCrec"
+          type="text"
+          placeholder="none"
+          value="address 1"
+          name="address"
+          id="myADD"
+          required
+        />
+        <br />
+        <h4 class="centerCrec">E-mail</h4>
+        <input
+          class="centerCrec"
+          type="text"
+          placeholder="none"
+          value="john@farmer.com"
+          name="email"
+          id="myMAIL"
+          required
+        />
+        <br />
+        <h4 class="centerCrec">Phone Number</h4>
+        <input
+          class="centerCrec"
+          type="text"
+          placeholder="none"
+          value="6912345678"
+          name="phone_num"
+          id="myPN"
+          required
+        />
+        <br /><bR><bR>
+        <button class="button" href="#" type="submit">Sign Up</button>
+      </form>
+      
       </div>
     </div>
 
