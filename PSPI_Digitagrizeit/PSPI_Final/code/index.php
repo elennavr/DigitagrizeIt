@@ -1,12 +1,5 @@
 <?php
-// Initialize the session
 session_start();
- 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -40,18 +33,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <script src="script.js" defer></script>
   </head>
   <body>
-    <script
-      language="javascript"
-      type="text/javascript"
-      src="navbar_use.txt"
-    ></script>
-
+    <?php include("navigation.php"); ?>
+    
     <section id="home">
       <script
         language="javascript"
         type="text/javascript"
         src="home.txt"
-      ></script>
+      ></script> 
     </section>
 
     <section class="about-area" id="about">
@@ -222,5 +211,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       <a href="#" class="fa fa-linkedin"></a>
       <p>@digitagrize.it.eu 2022<br /></p>
     </div>
+
+    
   </body>
 </html>
