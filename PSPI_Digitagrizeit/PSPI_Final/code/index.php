@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="faq.css">
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="contact.css" />
     <link rel="stylesheet" href="homepage.css" />
@@ -113,6 +114,7 @@
 
     <section class="faq-area" id="faq">
         <section class="faq-container">
+          <br><br><br><br>
           <h1 class="faq-heading" align="center" style="font-size:50px;">FAQ</h1>
               <h1 class="faq-page">Can i sell my property through your platform?</h1>
               <div class="faq-body">
