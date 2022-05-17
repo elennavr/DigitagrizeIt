@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +14,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link rel="stylesheet" href="about.css">
-    <link rel="stylesheet" href="faq.css">
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="contact.css" />
     <link rel="stylesheet" href="homepage.css" />
@@ -45,11 +42,9 @@ session_start();
 
     <section class="about-area" id="about">
       <div class="wrapper">
-        
         <div>
             <img class="image" src="https://images.unsplash.com/photo-1627920769541-daa658ed6b59?ixlib=<rb-></rb-        >1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2233&q=80" />
         </div>
-    
     <div>
         <div class="text">
             <h2 style="font-size: 2.75vw;"> Who are we</h2>
@@ -58,7 +53,6 @@ session_start();
             </p>
         </div>
     </div>
-    
     <div>
         <div class="text">
             <h2 style="font-size: 2.75vw;"> Production</h2>
@@ -67,15 +61,12 @@ session_start();
             </p>
           </div>
     </div>
-    
     <div>
       <img class="image" src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
     </div>
-    
     <div>
       <img class="image" src="https://images.unsplash.com/photo-1518620664663-35a1f6378ec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80" />
-    </div>
-    
+    </div>    
     <div>
         <div class="text">
             <h2 style="font-size: 2.75vw;"> Land</h2>
@@ -84,8 +75,7 @@ session_start();
             </p>
         </div>
     </div>
-    
-    <div>
+        <div>
         <div class="text">
             <h2 style="font-size: 2.75vw;"> Data and Information</h2>
             <p style="font-size: 1.75vw;">
@@ -93,16 +83,13 @@ session_start();
             </p>
         </div>    
     </div>
-    
-    <div>
+        <div>
       <img class="image" src="https://images.unsplash.com/photo-1579705745811-a32bef7856a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
     </div>
-        
-    <div>
+            <div>
       <img class="image" src="https://images.unsplash.com/photo-1545987796-200677ee1011?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
     </div>
-    
-    <div>
+        <div>
         <div class="text">
             <h2 style="font-size: 2.75vw;"> Network</h2>
             <p style="font-size: 1.75vw;">
@@ -110,72 +97,49 @@ session_start();
             </p>
         </div>
     </div>
-    
-    <div>
+      <div>
         <div class="text">
             <h2 style="font-size: 2.75vw;"> Transaction Safety</h2>
             <p style="font-size: 1.75vw;">
                 We provide any means necessary to ensure that every transaction between different parties safe and secure  
             </p>
         </div>
+    </div>  
+      <div>
+        <img class="image" src="https://images.unsplash.com/photo-1614064850003-13dbfd69fd11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
+      </div> 
     </div>
-  
-    <div>
-      <img class="image" src="https://images.unsplash.com/photo-1614064850003-13dbfd69fd11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" />
-    </div>
-  
-</div>
     </section>
 
     <section class="faq-area" id="faq">
-      <div class="text-part">
-        <h1>FAQ</h1>
-          <section class="faq-container">
-            <div class="faq-one">
-
-              <h1 class="faq-page" style="font-size: 3.25vw;" >Can i sell my property through your platform?</h1>
-
+        <section class="faq-container">
+          <h1 class="faq-heading" align="center" style="font-size:50px;">FAQ</h1>
+              <h1 class="faq-page">Can i sell my property through your platform?</h1>
               <div class="faq-body">
-                  <p style="font-size: 2vw;">No, 'Digitagrize it' is not a real estate platform. As far as land is concerned, our main purpose is to help owners find an associate, make a business plan and cultivate the land, sharing the fruit of this effort  </p>
+                  <p>No, 'Digitagrize it' is not a real estate platform. As far as land is concerned, our main purpose is to help owners find an associate, make a business plan and cultivate the land, sharing the fruit of this effort  </p>
               </div>
-          </div>
-          
           <hr class="hr-line">
-
-            <div class="faq-two">
-            
-              <h1 class="faq-page" style="font-size: 3.25vw;">Question 2</h1>              
-
+              <h1 class="faq-page">Question 2</h1>             
               <div class="faq-body">
-                  <p style="font-size: 2vw;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit saepe sequi, illum facere
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit saepe sequi, illum facere
                       necessitatibus cum aliquam id illo omnis maxime, totam soluta voluptate amet ut sit ipsum
                       aperiam.
                       Perspiciatis, porro!</p>
               </div>
-          </div>
-          
           <hr class="hr-line">
-
-            <div class="faq-three">
-
-              <h1 class="faq-page" style="font-size: 3.25vw;">Question 3</h1>
-
+              <h1 class="faq-page">Question 3</h1>
               <div class="faq-body">
-                  <p style="font-size: 2vw;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit saepe sequi, illum facere
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit saepe sequi, illum facere
                       necessitatibus cum aliquam id illo omnis maxime, totam soluta voluptate amet ut sit ipsum
                       aperiam.
                       Perspiciatis, porro!</p>
                 </div>
-        </div>
-
+          <hr class="hr-line">
+          </br></br></br></br>
     </section>
-
-  </main>
-  <script src="faq.js"></script>
-      </div>
+    <script src="faq.js"></script>
+    </div>
     </section>
-
-
 
     <section class="contact-area" id="contact">
         <div class="container">
@@ -198,7 +162,7 @@ session_start();
             >
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea
             >
-            <button class="button center" href="#">Submit</button>
+            <button class="button" href="#">Submit</button>
           </div>
         </div>
       </div>
@@ -211,7 +175,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       <a href="#" class="fa fa-linkedin"></a>
       <p>@digitagrize.it.eu 2022<br /></p>
     </div>
-
     
   </body>
 </html>
