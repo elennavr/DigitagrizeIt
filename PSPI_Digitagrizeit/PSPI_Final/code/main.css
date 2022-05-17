@@ -41,7 +41,7 @@ p {
 }
 .logo {
   flex: 1 1 auto;
-  margin-left: 5%;
+  margin-left: 1%;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
@@ -72,14 +72,17 @@ img {
   padding: 1rem;
 }
 
+.navbar-links li:hover {
+  background-color: #678a3f;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 a {
   margin: 15px;
   color: rgb(255, 255, 255);
   text-decoration: none;
   text-transform: uppercase;
-}
-a:hover {
-  color: #f0ca9a;
 }
 
 .about-area {
@@ -135,7 +138,7 @@ a:hover {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  width: 30px;
+  width: 40px;
   height: 21px;
 }
 
@@ -224,7 +227,11 @@ a:hover {
   padding: auto;
 }
 
-.active,
+.active {
+  background-color: #689f38;
+}
+
+.active1,
 .faq-page:hover {
   background-color: #80916c;
   color: rgb(255, 255, 255);
@@ -242,7 +249,7 @@ a:hover {
   float: center;
 }
 
-.active:after {
+.active1:after {
   content: "\2796";
 }
 
