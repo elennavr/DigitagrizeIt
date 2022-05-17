@@ -105,10 +105,15 @@ body
   padding: 16px 32px;
 }
 
+#database td
+{
+  color: black;
+}
 
 #database td, #database th {
   border: 1px solid #ddd;
   padding: 8px;
+  font-weight: bold;
 }
 
 
@@ -156,6 +161,13 @@ body
   cursor: pointer;
 }
 
+.table-image
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
 #search-bar-database {
   background-image: url('../images/icons/search-line.png'); /* Add a search icon to input */
   background-position: 2px; /* Position the search icon */
@@ -186,4 +198,23 @@ body
   border: 1px solid #ddd;
   display: inline;
   padding: 2px;
+}
+
+.continue-button
+{
+  margin-top: 50px;
+  background-color: #32cd32;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  float: right;
+}
+
+.continue-button:hover {
+  background-color: #269c26;
 }

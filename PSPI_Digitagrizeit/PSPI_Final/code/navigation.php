@@ -16,12 +16,20 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
             <li><a href="#contact">Contact Us</a></li>
             <li>
             <div class="dropdown">
-                <a class="dropbtn">Hello, user!
+                <a class="dropbtn"><?php echo $_SESSION["user"]["username"]; ?>
                 <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-content">
-                    <a href="UserProfile.html">Profile</a>
-                    <a href="addlisting.html">Add Listings</a>
+                    <?php
+                        if($_SESSION["user"]["is_admin"] == 1)
+                        { ?>
+                            <a href="AdminPanel.php">Admin Panel</a>
+                        <?php } else
+                         { ?>
+                            <a href="UserProfile.php">Profile</a>
+                            <a href="addlisting.html">Add Listings</a>
+                        <?php } ?>
+                    
                     <a href="logout.php">Log Out</a>
                 </div>
             </div> 

@@ -1,5 +1,7 @@
 <?php
-    
+
+session_start();
+
 $showAlert = false; 
 $showError = false; 
 $exists=false;
@@ -31,17 +33,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($num == 0) {
         if(($password1 == $password2) && $exists==false) {
     
-            $hash = password_hash($password1, 
-                                PASSWORD_DEFAULT);
+            //$hash = password_hash($password1, 
+            //                    PASSWORD_DEFAULT);
                 
             // Password Hashing is used here. 
             $sql = "INSERT INTO users (username, password, email, first_name, last_name, address, phone_num) 
-                VALUES ('$username', '$hash', '$email','$first_name', '$last_name', '$address', '$phone_num');";
+                VALUES ('$username', '$password1', '$email','$first_name', '$last_name', '$address', '$phone_num');";
     
             $result = mysqli_query($conn, $sql);
     
             if ($result) {
-                echo 'Account created!'; 
+                $_SESSION["loggedin"] = true;
+                $_SESSION["id"] = $id;
+                $_SESSION["username"] = $username;   
+                header("location: index.php");
             }
         } 
         else { 

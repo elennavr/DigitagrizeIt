@@ -1,6 +1,9 @@
 <?php
 
 session_start();
+$_SESSION["loggedin"] = false;
+$_SESSION["user"] = "";
+$_SESSION["username"] = "";
     
 $showAlert = false; 
 $showError = false; 
@@ -17,7 +20,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $sql = "Select * from users where username='$username'";
     
-    
     $result = mysqli_query($conn, $sql);
     
     $num = mysqli_num_rows($result); 
@@ -28,16 +30,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($num == 0) {
         echo "This account does not exist. Please register.";
     } else if($num==1){
-        $sql_password = "Select password from users where username='$username'";
-        $result_psw = mysqli_query($conn ,$sql_password);
+        $sql_info = "Select * from users where username='$username'";
+        $result_psw = mysqli_query($conn ,$sql_info);
         $row = mysqli_fetch_assoc($result_psw);
         $pass = $row["password"];
 
         if($pass == $password){
+
             $_SESSION["loggedin"] = true;
-            $_SESSION["id"] = $id;
-            $_SESSION["username"] = $username;   
-            header("location: index.php");   
+            $_SESSION["user"] = $row;
+            $_SESSION["username"] = $username;
+
+            header("location: index.php");  
         }
         else
             echo "failed.";
