@@ -3,8 +3,6 @@
 $showAlert = false; 
 $showError = false; 
 $exists=false;
-$flag_user = false;
-$flag_psd= false;
 
     
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,20 +19,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST["address"];
     $email = $_POST["email"];
     $phone_num = $_POST["phone_num"];
+    $corr_mail = false;
     
     $sql = "Select * from users where username='$username'";
-    
     $result = mysqli_query($conn, $sql);
-    
     $num = mysqli_num_rows($result); 
+
+    $sql_mail = "Select * from users where email='$email'";
+    $mail_exists = mysqli_query($conn, $sql_mail);
+    $num_mail = mysqli_num_rows($mail_exists); 
+
     if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)){
       $msg = 'The email you have entered is invalid, please try again.';
       $corr_mail = false;
     }else{
-      if(!$flag_user){
         $corr_mail = true;
-      }  
-    } 
+    }
+
+    if($corr_mail){
+      if($num_mail > 0){
+        $msg = 'This email is in use by another user, please try again.';
+        $corr_mail = false;
+      }
+    }
 
     if($num == 0 && $corr_mail) {
         if(($password1 == $password2) && $exists==false) {
