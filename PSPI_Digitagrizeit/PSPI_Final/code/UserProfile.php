@@ -230,9 +230,9 @@
 <div id="Settings" class="tabcontent">
     <h2>Account Settings</h2>
     <div class="buttonGroup">
-      <button type="button" class="settingbutton"> <h4> Change username </h4> </button>
-      <button type="button" class="settingbutton"> <h4> Change password </h4> </button>
-      <button type="button" class="settingbutton"> <h4> Change email </h4> </button>
+      <button type="button" class="settingbutton"> <h4> <a href="changeUsername.php">Change username </a></h4> </button>        
+      <button type="button" class="settingbutton" href="changePassword.php"> <h4> <a href="changePassword.php">Change password </a></h4> </button>
+      <button type="button" class="settingbutton" href="changeEmail.php"> <h4><a href="changeEmail.php"> Change email </a></h4> </button>
       <button type="button" class="settingbutton"> <h4 style="color: red;"> Delete account </h4> </button>
     </div> 
   </div>
