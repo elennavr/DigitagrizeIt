@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="addlisting.css" type="text/css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap"
+    rel="stylesheet"
+/>
+<link rel="stylesheet" href="master.css" type="text/css">
+<link rel="stylesheet" href="gradient.css" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var content = $("." + inputValue);
+        
+        $(".content").not(content).hide();
+        $(content).show();
+    });
+});
+</script>
+
+</head>
+<body>
+
+<script src="tabnav.js"></script>
+  
+<div class="tab">
+
+    <div class="tab-head">
+        <div class="progressbarcontainer">
+            <div class="circular">
+                <div class="inner"></div>
+                <div class="progressbar-icon">
+                    <img src="../images/icons/favicon.png" alt = "progress bar logo" style="width: 60px; height: 60px;">
+                </div>
+                <div class="circle">
+                <div class="bar left">
+                    <div class="progress"></div>
+                </div>
+                <div class="bar right">
+                    <div class="progress"></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <h5><div class="circ_progress_amount">100%</div></h5>
+    </div>
+
+        <button class="tablinks" onclick="openTab(event, 'Category')" id="defaultOpen">
+            <span class="tab-icon"><img src="../images/icons/seedling.png" alt="category icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Category</span>
+            <span class="completed-icon">
+                <img src="../images/icons/accept.png" alt="marked completed icon" style="width: 15px; height: 15px;">
+            </span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:100%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openTab(event, 'Location')">
+            <span class="tab-icon"><img src="../images/icons/location.png" alt="Location icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Location</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:20%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openTab(event, 'Basic Characteristics')">
+            <span class="tab-icon"><img src="../images/icons/surveys.png" alt="Characteristics icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Basic Characteristics</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openTab(event, 'Extra Information')">
+            <span class="tab-icon"><img src="../images/icons/information.png" alt="extra info icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Extra Information</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+        
+        <button class="tablinks" onclick="openTab(event, 'Description')">
+            <span class="tab-icon"><img src="../images/icons/description.png" alt="description icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Description</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+
+        <button class="tablinks" onclick="openTab(event, 'Media')">
+            <span class="tab-icon"><img src="../images/icons/pictures.png" alt="media icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Media</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+
+        <button class="tablinks" onclick="openTab(event, 'Contact Information')">
+            <span class="tab-icon"><img src="../images/icons/contact-us.png" alt="contact info icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Contact Information</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+
+        <button class="tablinks" onclick="openTab(event, 'Publish')">
+            <span class="tab-icon"><img src="../images/icons/upgrade-update.png" alt="publish icon" style="width: 20px; height: 20px;"/></span>
+            <span class="prof-text">Publish</span>
+            <div class="progressbarempty" style="height: 5px; width: 100%;">
+                <div class="progressbar" style="height:5px;width:0%"></div>
+            </div>
+        </button>
+    </div>
+
+<div id="Category" class="tabcontent">
+    <h2>Category <span style="color: rgb(254, 143, 40);">*</span> </h2>
+        <form id="category-form" class="listing-form">
+            <input type="radio" id="product" name="list_category" value="product" required>
+            <label for="product">Product</label>
+            <input type="radio" id="land" name="list_category" value="land">
+            <label for="land">Land/Property</label>
+
+            <h4 style="margin-top: 30px;"><span style="color: rgb(254, 143, 40); font-style: italic; ">* Required field</span></h4>
+
+            <button class="continue-button" type="submit">Continue</button>
+        </form>
+</div>
+
+<div id="Location" class="tabcontent">
+  <h2>Location</h2>
+  
+  <form action="#">
+      <h4>Country <span style="color: rgb(254, 143, 40);">*</span></h4>
+      <input type="text" id="country" required>
+      <br>
+      <h4>State/Province/County <span style="color: rgb(254, 143, 40);">*</span></h4>
+      <input type="text" id="state" required>
+      <br>
+      <h4>Area/Municipality <span style="color: rgb(254, 143, 40);">*</span></h4>
+      <input type="text" id="municipality" required>
+      <br>
+      <h4>Address <span style="color: rgb(254, 143, 40);">*</span></h4>
+      <input type="text" id="address" required>
+
+      <h4 style="margin-top: 30px;"><span style="color: rgb(254, 143, 40); font-style: italic; ">* Required field</span></h4>
+
+      <button class="continue-button" type="submit">Continue</button>
+  </form>
+
+  </div>
+
+<div id="Basic Characteristics" class="tabcontent">
+    <h2>Basic Characteristics</h2>
+
+    <div class="product content"> 
+        <form>        
+            <h3>Product Characteristics</h3>
+            <h4>Product Name <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <input type="text" id="prod_name" required>
+            <h4>Product Category <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <select name="prod_catgegory" id="prod_catgegory" required>
+                <option value="fruit">Fruit</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="herbs">Herbs</option>
+                <option value="spices">Spices</option>
+                <option value="other">Other</option>
+            </select>
+
+            <h4>Cultivation Method <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <select name="prod_method" id="prod_method" required>
+                <option value="bio">Biological</option>
+                <option value="conventional">Conventional</option>
+            </select>
+            
+            <h4>Price <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <input type="number" min="0" id="price" required> 
+            <select name="currency" id="currency" required>
+                <option value="euro">€</option>
+                <option value="lev">лв</option>
+                <option value="krona">kr</option>
+                <option value="zloti">zł</option>
+                <option value="dollar">$</option>
+            </select>
+            per
+            <select name="weight" id="weight" required>
+                <option value="kilos">Kilo</option>
+                <option value="tons">Tons</option>
+                <option value="pounds">Pound</option>
+            </select>  
+            
+            <h4>Annual Production <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <input type="number" min="0" id="price" required> 
+            <select name="prod_weight" id="prod_weight" required>
+                <option value="kilos">Kilo</option>
+                <option value="tons">Tons</option>
+                <option value="pounds">Pound</option>
+            </select>
+
+            <h4>Place of Origin <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <input type="text" id="prod_origin" required>
+            
+            <h4 style="margin-top: 30px;"><span style="color: rgb(254, 143, 40); font-style: italic; ">* Required field</span></h4>
+
+            <button class="continue-button" type="submit">Continue</button>    
+        </form>
+    </div>
+
+    <div class="land content">
+        <h3>Land Characteristics</h3>
+        <form>
+            <h4>Property Name <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <input type="text" id="land_name" required>
+            <h4>Range <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <input type="number" min="0" id="land_range"required>
+            <select name="area_measurements" id="area_measurements" required>
+                <option value="m2">Square meters</option>
+                <option value="km2">Square kilometers</option>
+                <option value="acres">Acres</option>
+                <option value="hectare">Hectares</option>
+                <option value="sq-mile">Square miles</option>
+            </select>
+
+            <h4>Facing road <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <select name="facing_road" id="facing_road" required>
+                <option value="rural">Rural</option>
+                <option value="provincial">Provincial</option>
+                <option value="national">National</option>
+            </select>
+
+            <h4>Height in meters <span style="color: rgb(254, 143, 40);">*</span></h4>
+            <input type="number" id="land_height" required>
+
+            <h4>Average sunlight (days/year)</h4>
+            <input type="number" id="land_sunlight">
+
+            <h4>Average rain (mm)</h4>
+            <input type="number" id="land_rain">
+            
+            <h4 style="margin-top: 30px;"><span style="color: rgb(254, 143, 40); font-style: italic; ">* Required field</span></h4>
+
+            <button class="continue-button" type="submit">Continue</button>
+        </form>
+    </div>
+    
+</div>
+
+<div id="Extra Information" class="tabcontent">
+    <h2>Extra Information</h2>
+    
+    <div class="product content"> 
+        <form>        
+            <h4>Product Name:</h4>
+            
+            <h4>Minimum Order Amount</h4>
+            <input type="number" min="0" id="min_order"> 
+            <select name="order_weight" id="order_weight">
+                <option value="kilos">Kilo</option>
+                <option value="tons">Tons</option>
+                <option value="pounds">Pound</option>
+            </select>  
+            
+            <h4>Type of Packaging</h4>
+            <input type="text" id="Packaging"> 
+    
+            <button class="continue-button" type="submit">Continue</button>    
+        </form>
+    </div>
+
+    <div class="land content">
+        <form>
+            <h4>Recommended Cultivation</h4>
+            <input type="text" id="rec_cultivation">
+            
+            <h4>Water drilling system</h4>
+            <input type="radio" id="drill_yes" value="Yes">
+            <label for="drill_yes">Yes</label>
+            <input type="radio" id="drill_no" value="No">
+            <label for="drill_no">No</label>
+            
+            <button class="continue-button" type="submit">Continue</button>
+        </form>
+    </div>
+
+</div>
+
+<div id="Description" class="tabcontent">
+    <h2>Description <span style="color: rgb(254, 143, 40);">*</span></h2>
+    <p>Give more information about your listing in the following box.</p>
+    <form action="#">
+        <textarea maxlength="2000" rows="10" style="width: 100%;" placeholder="Enter description here..." required></textarea>
+        
+        <h4 style="margin-top: 30px;"><span style="color: rgb(254, 143, 40); font-style: italic; ">* Required field</span></h4>
+
+        <button class="continue-button" type="submit">Continue</button>
+    </form>
+    </div>
+
+<div id="Media" class="tabcontent">
+    <h2>Media</h2>
+    <p>Select up to 6 images showing your listing.</p>
+    <form action="/action_page.php">
+        <label for="img">Select images:</label>
+        <input type="file" id="img" name="img" accept="image/*" multiple>
+        <input type="submit">
+
+        <button class="continue-button" type="submit">Continue</button>
+    </form>
+     </div>
+
+  <div id="Contact Information" class="tabcontent">
+    <h2>Contact Information</h2>
+    <p>This contact information will be visible to anyone who can see this listing.</p>
+
+    <form action="#">
+        <h4>First Name</h4>
+        <input
+            type="text"
+            placeholder="none"
+            value="John"
+            id="firstname"
+            disabled
+        />
+        <br />
+        
+        <h4>Last Name</h4>
+        <input
+            type="text"
+            placeholder="none"
+            value="Farmer"
+            id="lastname"
+            disabled
+        />
+
+        <br />
+        <h4>E-mail <span style="color: rgb(254, 143, 40);">*</span></h4>
+        <input
+            type="text"
+            placeholder="none"
+            value="john@farmer.com"
+            id="myMAIL"
+            required
+        />
+
+        <br />
+        <h4>Phone Number <span style="color: rgb(254, 143, 40);">*</span></h4>
+        <input
+            type="text"
+            placeholder="none"
+            value="6912345678"
+            id="myPN"
+            required
+        />
+
+        <br />
+        <h4>Available:</h4>
+        <form action="#">
+            <select name="availhours" id="availhours">
+            <option value="allday">All day</option>
+            <option value="morning">In the morning</option>
+            <option value="noon">At noon</option>
+            <option value="afternoon">In the afternoon</option>
+            <option value="night">At night</option>
+            </select>
+        
+        </form>
+
+        <h4 style="margin-top: 30px;"><span style="color: rgb(254, 143, 40); font-style: italic; ">* Required field</span></h4>
+
+        <button class="continue-button" type="submit">Continue</button>
+
+    </form>
+
+  </div>
+
+  <div id="Publish" class="tabcontent">
+    <h2>Publish</h2>
+    <p>Your listing should comply with the website's terms and conditions.</p>
+    <br>
+
+    <form action="#">
+        <input type="checkbox" id="agree" name="terms-agree" required>
+        <label for="agree">I agree to the website's terms and conditions.</label>
+        <br>
+        <button class="continue-button" onclick="myFunction()" id="publish">Publish</button>
+    </form>
+   
+</div>
+
+
+<script>  // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+
+<script>
+    function AgreeRequired() {
+        var x = document.getElementById("agree").required;
+    }
+</script>
+
+
+</body>
+</html> 
