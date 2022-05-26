@@ -5,6 +5,7 @@
     <link rel="icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="breadcrumb.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,8 +15,12 @@
   </head>
   <body>
     <div class="tab">
+      <ul class="breadcrumb">
+        <li><a href="index.php">Home</a></li>
+        <li>Login</li>
+      </ul>
       <h2 align="center">Login</h2>
-      <p align="center">Or <a href="register.html">create an account</a>!</p>
+      <p align="center">Or <a href="register.php">create an account</a>!</p>
 
       <form action="login.php" method="post">
         <h4 class="centerCrec">Username</h4>
@@ -44,10 +49,9 @@
         <button class="button center" type="submit">Login</button><br /><br />
       </form>
 
-      <form action="index.php">
-        <button id="nextTo" class="button scale">Home</button>
-      </form>
-      <p id="nextTo2" class="centerPSW">Forgot <a href="#">password</a>?</p>
+      <p id="nextTo2" class="centerPSW">
+        Forgot <a href="forgotPSW.php">password</a>?
+      </p>
     </div>
 
     <script>
