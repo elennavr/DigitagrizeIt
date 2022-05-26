@@ -1,16 +1,16 @@
 <?php
-    
-$showAlert = false; 
+
+$showSuccess = false; 
 $showError = false; 
 $exists=false;
+$success = false;
 
-    
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-      
+
     // Include file which makes the
     // Database Connection.
     include 'connect.php';   
-    
+
     $username = $_POST["username"]; 
     $password1 = $_POST["password1"]; 
     $password2 = $_POST["password2"];
@@ -19,11 +19,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST["address"];
     $email = $_POST["email"];
     $phone_num = $_POST["phone_num"];
+    $defaultpic = 'seedling.png';
     $corr_mail = false;
-    
+
     $sql = "Select * from users where username='$username'";
+
     $result = mysqli_query($conn, $sql);
-    $num = mysqli_num_rows($result); 
+
+    $num = mysqli_num_rows($result);
 
     $sql_mail = "Select * from users where email='$email'";
     $mail_exists = mysqli_query($conn, $sql_mail);
@@ -32,47 +35,58 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)){
       $msg = 'The email you have entered is invalid, please try again.';
       $corr_mail = false;
+      $showError = true;
     }else{
+
         $corr_mail = true;
-    }
+    } 
 
     if($corr_mail){
       if($num_mail > 0){
         $msg = 'This email is in use by another user, please try again.';
         $corr_mail = false;
+        $exists = true;
       }
     }
 
     if($num == 0 && $corr_mail) {
         if(($password1 == $password2) && $exists==false) {
-    
-            $hash = password_hash($password1, 
-                                PASSWORD_DEFAULT);
-            
-            // Password Hashing is used here. 
-            $sql = "INSERT INTO users (username, password, email, first_name, last_name, address, phone_num) 
-                VALUES ('$username', '$hash', '$email','$first_name', '$last_name', '$address', '$phone_num');";
-    
+
+
+            $sql = "INSERT INTO users (username, password, email, first_name, last_name, address, phone_num, profilepic) 
+                VALUES ('$username', '$password1', '$email','$first_name', '$last_name', '$address', '$phone_num', '$defaultpic');";
+
             $result = mysqli_query($conn, $sql);
-    
+
             if ($result) {
-              $msg = 'Your account has been made.'; 
-              
-             }else { 
-              $msg = "Invalid Password."; 
+              $msg = 'Your account has been made.';
+              $showSuccess = true;
+              //retreive that user from the database
+              //$sql_user = "SELECT * FROM users WHERE username='$username'";
+              //$get_user = mysqli_fetch_assoc(mysqli_query($conn, $sql_user));
+
+              //$_SESSION["loggedin"] = true;
+              //$_SESSION["user"] = $get_user;
+              //$_SESSION["username"] = $username;
+
+              //header("location: index.php"); 
+
+             }
+
+             else { 
+              $msg = "Invalid Password.";
+              $showError = true; 
             }      
           } 
         }
-    
-   if($num>0 && $corr_mail){
-      $msg = "Username not available"; 
-   } 
 
-  
+   if($num>0 && $corr_mail){
+      $msg = "Username not available";
+      $exists = true; 
+   } 
 }
-    
-    
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -80,6 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="register.css" />
+    <link rel="stylesheet" href="breadcrumb.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -88,20 +103,53 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     />
   </head>
   <body>
-    <div class="tab">
-      <h2 align="center">Sign Up</h2>
+
+  <?php
+
+    if($showSuccess) {
+
+    echo ' <div class="alert alert-success" role="alert">
+        <strong>Success! </strong>'.$msg.' 
+    </div> '; 
+    }
+
+    if($showError) {
+
+        echo ' <div class="alert alert-danger" role="alert"> 
+        <strong>Error! </strong> '.$msg.'
+    </div> '; 
+    }
+
+    if($exists) {
+        echo ' <div class="alert alert-warning" role="alert">
+        <strong>Warning! </strong> '.$msg.'
+      </div> '; 
+    }
+
+  ?>
+
       <?php 
-      if(isset($msg)){  // Check if $msg is not empty
-          echo '<h2 align="center">'.$msg.'</h2>'; // Display our message and wrap it with a div with the class "statusmsg".
-      } 
+      //if(isset($msg)){  // Check if $msg is not empty
+        //  echo '<h2 align="center">'.$msg.'</h2>'; // Display our message and wrap it with a div with the class "statusmsg".
+      //} 
       ?>
+
+    <div class="tab">
+
+    <ul class="breadcrumb size">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li>Sign Up</li>
+      </ul>
+
+      <h2 align="center">Sign Up</h2>
+
       <form action="register.php" method="post">
         <h4 class="centerCrec">Username</h4>
         <input
           class="centerCrec"
           type="text"
-          placeholder="none"
-          value="supercool_username"
+          placeholder="username"
           name="username"
           id="myUSRNM"
           required
@@ -111,8 +159,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input
           class="centerCrec"
           type="password"
-          placeholder="none"
-          value="password"
           name="password1"
           id="myPSW"
           required
@@ -124,8 +170,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input
           class="centerCrec"
           type="password"
-          placeholder="none"
-          value="password"
           name="password2"
           id="myPSW"
           required
@@ -135,8 +179,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input
           class="centerCrec"
           type="text"
-          placeholder="none"
-          value="John"
+          placeholder="First Name"
           name="first_name"
           id="myFN"
           required
@@ -146,8 +189,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input
           class="centerCrec"
           type="text"
-          placeholder="none"
-          value="Farmer"
+          placeholder="Last Name"
           name="last_name"
           id="myLN"
           required
@@ -157,8 +199,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input
           class="centerCrec"
           type="text"
-          placeholder="none"
-          value="address 1"
+          placeholder="Str. no., Region"
           name="address"
           id="myADD"
           required
@@ -168,8 +209,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input
           class="centerCrec"
           type="text"
-          placeholder="none"
-          value="john@farmer.com"
           name="email"
           id="myMAIL"
           required
@@ -179,8 +218,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <input
           class="centerCrec"
           type="text"
-          placeholder="none"
-          value="6912345678"
           name="phone_num"
           id="myPN"
           required
@@ -188,7 +225,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <br /><bR><bR>
         <button class="button" href="#" type="submit">Sign Up</button>
       </form>
-      
+
       </div>
     </div>
 
