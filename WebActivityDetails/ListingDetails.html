@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title>DetailsListings</title>
+        <link rel="stylesheet" href="ListingDetails.css">
+        <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap"
+      rel="stylesheet"/>
+    </head>
+<body>
+    <div class="container">
+        <div class="slides fade">
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1610397962076-02407a169a5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="IMAGE-NOT-FOUND">
+            </div>
+        </div>
+        <div class="slides fade">
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1610397962076-02407a169a5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="IMAGE-NOT-FOUND">
+            </div>
+        </div>
+        <div class="slides fade">
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1610397962076-02407a169a5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="IMAGE-NOT-FOUND">
+            </div>
+        </div>
+        <div class="slides fade">
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1610397962076-02407a169a5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="IMAGE-NOT-FOUND">
+            </div>
+        </div>
+        <div class="slides fade">
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1610397962076-02407a169a5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="IMAGE-NOT-FOUND">
+            </div>
+        </div>
+        <div class="slides fade">
+            <div class="images">
+                <img src="https://images.unsplash.com/photo-1610397962076-02407a169a5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="IMAGE-NOT-FOUND">
+            </div>
+        </div>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+          </div>
+
+          <script>
+            let slideIndex = 1;
+            showSlides(slideIndex);
+            
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+            
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+              let i;
+              let slides = document.getElementsByClassName("slides");
+              let dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+              }
+              for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";  
+              dots[slideIndex-1].className += " active";
+            }
+            </script>
+
+        <div class="info">
+            <h1>Apples <span><p>(Product or Land)</p></span></h1>
+            <h2>Location</h2>
+            
+            <h3><i>Basic Characteristics</i></h3>
+            <p1><i>Extra Information</i></p1>
+            <div class="Description">
+                <h2>Description</h2>
+                <textarea maxlength="2000" rows="10" style="width: 100%;" readonly></textarea></div>
+
+            <p1>Sumbitted by: <i>Name, phone number, email. Available</i></p1>
+            
+
+
+        </div>
+    </div>
+</body>
