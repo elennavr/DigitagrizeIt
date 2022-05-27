@@ -43,6 +43,16 @@ if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap"
     rel="stylesheet"
 />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('#uploadpic').change(function(){
+        var filename = $(this).val();
+       if(filename != "") { $("#upload-pic-container").show(); } //show the button
+    });
+});
+</script>
 
 </head>
 <body>
@@ -51,30 +61,84 @@ if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
 <script src="tablesort.js"></script>
 <script src="filtertable.js"></script>
 
+<?php
+
+    if(isset($_SESSION["successUpdateInfo"]) && $_SESSION["successUpdateInfo"] == true) {
+    
+    echo ' <div class="alert alert-success" role="alert">
+        <strong>Success! </strong>'.$_SESSION["msg"].' 
+    </div> ';
+    unset ($_SESSION["successUpdateInfo"]);
+    unset($_SESSION["msg"]);
+
+    //when the user info is updated, then we need to fetch the user from the database again to display the updated information
+    $id = $_SESSION["user"]["userID"];
+    $sql_user = "Select * from users where userID='$id'";
+    $get_user = mysqli_fetch_assoc(mysqli_query($conn, $sql_user));
+
+    $_SESSION["user"] = $get_user;
+
+    }
+
+    if(isset($_SESSION["errorUpdateInfo"]) && $_SESSION["errorUpdateInfo"] == true) {
+
+        echo ' <div class="alert alert-danger" role="alert"> 
+        <strong>Error! </strong> '.$_SESSION["msg"].'
+    </div> '; 
+    unset($_SESSION["errorUpdateInfo"]);
+    unset($_SESSION["msg"]);
+    }
+
+    if(isset($_SESSION["successUploadPic"]) && $_SESSION["successUploadPic"] == true) {
+    
+        echo ' <div class="alert alert-success" role="alert">
+            <strong>Success! </strong>'.$_SESSION["msg"].' 
+        </div> ';
+        unset ($_SESSION["successUploadPic"]);
+        unset($_SESSION["msg"]);
+        }
+
+    if(isset($_SESSION["errorUploadPic"]) && $_SESSION["errorUploadPic"] == true) {
+
+        echo ' <div class="alert alert-danger" role="alert"> 
+        <strong>Error! </strong> '.$_SESSION["msg"].'
+    </div> '; 
+    unset($_SESSION["errorUploadPic"]);
+    unset($_SESSION["msg"]);
+    }
+
+  ?>
+
   <div class="tab">
-    <a id="backToIndex" class="back_button" href="index.php" style="background-color:#d3d3d3">Back</a> 
-  <div class="tab-head">
-      <div class="profilepiccontainer">
-        <img class="profilepic" src="../images/media/<?php
-          echo $_SESSION["user"]["profilepic"];
-        ?>" alt="profile pic">
-
-        <form action="" method="post">
-            <input type="file" name="uploadpic" id="uploadpic" value="" hidden/>
-            <button class="changepic" type="submit" name="uploadprofpic" id="uploadprofpic">
-
-            <!-- The input field for the file upload is hidden for aesthetical reasons. When the pic icon is clicked
-            it will trigger the input field button click with the below javascript code --> 
-
-        </form>
-            <img src="../images/icons/edit-pngrepo-com.png" alt="change profile pic icon" style="width:40px; height: 40px;">
-        </button>
-      </div>     
-      <h2> 
+      <div class="tab-buttons">
+        <a id="backToIndex" class="back-button" href="index.php">Back</a> 
+        </div>
+        <div class="tab-head">
+            <form action="updateprofilepic.php" method="post" enctype="multipart/form-data">
+            <div class="profilepiccontainer">
+                <img class="profilepic" src="../images/media/<?php
+                echo $_SESSION["user"]["profilepic"];
+                ?>" 
+                alt="profile pic">
+                    <!-- The input field for the file upload is hidden for aesthetical reasons. When the pic icon is clicked
+                    it will trigger the input field button click with the below javascript code --> 
+                    
+                    <input type="file" src = "../images/icons/edit-pngrepo-com.png" class="changepic" name="uploadpic" id="uploadpic" value="" />
+                    <!--<img src="../images/icons/edit-pngrepo-com.png" alt="change profile pic icon" style="width:40px; height: 40px;"> -->
+                    <!--</button> --> 
+            </div>
+      <div class="tab-buttons" id="upload-pic-container" hidden>
+            <button type="submit" class="upload-button" name="upload-pic">Update picture</button>
+        </div>
+      
+    </form>
+      
+    <h2> 
         <?php
           echo $_SESSION["user"]["username"];
         ?>
-      </h2>
+    </h2>
+
     </div>
 
         <button id="info_tab" class="tablinks" onclick="openTab(event, 'Info')">
@@ -116,26 +180,26 @@ if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
   <h4> Last Name</h4>
   <input type="text" id="input-lname" placeholder="Last name" value= "<?php echo $_SESSION["user"]["last_name"]; ?>" disabled>
 
-  <form action="updateuser.php">
+  <form action="updateuserinfo.php" method="post">
     <h4> About me</h4>
-    <textarea rows="4" id="input-aboutme" placeholder="A few words about you ..."> <?php echo $_SESSION["user"]["about"]; ?></textarea>
+    <textarea rows="4" name="input-aboutme" placeholder="A few words about you ..."><?php echo $_SESSION["user"]["about"]; ?></textarea>
 
     <h2>Contact Information</h2>
 
     <h4>Address</h4>
-    <input type="text" id="input-address" placeholder="Street, Number, Region" value= "<?php echo $_SESSION["user"]["address"]; ?>">
+    <input type="text" name="input-address" placeholder="Street, Number, Region" value= "<?php echo $_SESSION["user"]["address"]; ?>">
     
     <h4>City</h4>
-    <input type="text" id="input-city" placeholder="City" value= "<?php echo $_SESSION["user"]["city"]; ?>">
+    <input type="text" name="input-city" placeholder="City" value= "<?php echo $_SESSION["user"]["city"]; ?>">
           
     <h4>Country</h4>
-    <input type="text" id="input-country" placeholder="Country" value= "<?php echo $_SESSION["user"]["country"]; ?>">
+    <input type="text" name="input-country" placeholder="Country" value= "<?php echo $_SESSION["user"]["country"]; ?>">
           
     <h4>Postal Code</h4>
-    <input type="text" id="input-postcode" placeholder="Postcode" value= "<?php echo $_SESSION["user"]["post_code"]; ?>">
+    <input type="text" name="input-postcode" placeholder="Postcode" value= "<?php echo $_SESSION["user"]["post_code"]; ?>">
 
     <h4>Phone Number</h4>
-    <input type="text" id="input-phone" placeholder="Number" value= "<?php echo $_SESSION["user"]["phone_num"]; ?>">
+    <input type="text" name="input-phone" placeholder="Number" value= "<?php echo $_SESSION["user"]["phone_num"]; ?>">
     <button class="continue-button" type="submit">Save changes</button>  
 
 </form>
@@ -157,9 +221,6 @@ if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
         <div class="databasecontainer">
             <div class="database-toolbar">
                 <input type="input" type="text" onkeyup="var num = filterTable('search-bar-database','database', 3)" placeholder="Search.." id="search-bar-database">
-                <button class="filter_button">
-                    <img src="../images/icons/filter-2-fill.png" alt="filter button" style="width: 20px; height: 20px;">
-                </button>
             </div>
             
             <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
@@ -456,14 +517,6 @@ if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
     var active = '<?=$_SESSION["active_tab"]?>';
     //if(editmode) //if the number is a positive integer (a user's id)
         document.getElementById(active).click();
-</script>
-
-<script>
-    document.getElementById("uploadprofpic").addEventListener('click', clickUpload);
-
-    function clickUpload() {
-        document.getElementById("uploadpic").click();
-    }
 </script>
 
 </body>
