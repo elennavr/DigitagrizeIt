@@ -95,6 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="register.css" />
     <link rel="stylesheet" href="breadcrumb.css" />
+    <link rel = "stylesheet" href="alerts.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -127,12 +128,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
   ?>
 
-      <?php 
-      //if(isset($msg)){  // Check if $msg is not empty
-        //  echo '<h2 align="center">'.$msg.'</h2>'; // Display our message and wrap it with a div with the class "statusmsg".
-      //} 
-      ?>
-
     <div class="tab">
 
     <ul class="breadcrumb size">
@@ -141,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <li>Sign Up</li>
       </ul>
       <hr style="background-color: rgb(199, 132, 55)" />
-      <img class="logo" src="images/icons/favicon.png" />
+      <img class="logo" src="../images/icons/favicon.png" />
       <h2 align="center">Sign Up</h2>
 
       <form action="register.php" method="post">

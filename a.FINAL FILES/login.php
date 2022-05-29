@@ -59,6 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="login.css" />
     <link rel="stylesheet" href="breadcrumb.css" />
+    <link rel="stylesheet" href="alerts.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -68,13 +69,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </head>
   <body>
   <?php
-
-if($showError) {
+  
+  if($showError) {
 
     echo ' <div class="alert alert-danger" role="alert"> 
     <strong>Error! </strong> '.$msg.'
     </div> '; 
-    }
+  }
     unset($showError);
     unset($msg);
     ?>
@@ -85,7 +86,7 @@ if($showError) {
         <li>Login</li>
       </ul>
       <hr style="background-color: rgb(199, 132, 55)" />
-      <img class="logo" src="images/icons/favicon.png" />
+      <img class="logo" src="../images/icons/favicon.png" />
       <h2 align="center">Login</h2>
       <p align="center">Or <a href="register.php">create an account</a>!</p>
 

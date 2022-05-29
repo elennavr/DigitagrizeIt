@@ -1,23 +1,37 @@
 <?php
   session_start();
   include("connect.php");
+  include("connect2.php");
 
   $sql_users = "SELECT * from users";
   $query_users = mysqli_query($conn, $sql_users);
+
+  $sql_products = "SELECT * from products";
+  $query_products = mysqli_query($con, $sql_products);
 
   if(!isset($_SESSION["active_tab"]))
   {
       $_SESSION["active_tab"] = "info_tab";
   }
-  
+
 ?>
 
 <?php
-//php script for deleting from the user database
+//php script for activating the correct tab when the admin is editting records
 
 if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
 {
     $_SESSION["active_tab"] = "users_tab";
+}
+
+if(isset($_GET["productedit"]) || isset($_GET["productdelete"]))
+{
+    $_SESSION["active_tab"] = "product_listings_tab";
+}
+
+if(isset($_GET["propertyedit"]) || isset($_GET["propertydelete"]))
+{
+    $_SESSION["active_tab"] = "property_listings_tab";
 }
 
 ?>
@@ -406,7 +420,7 @@ $(document).ready(function(){
             </div>
             
             <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
-                <table id="database" name="users_database">
+                <table id="database" name="property_database">
                     <tr> 
                         <th>Actions</th>
                         <th>Image1</th>
@@ -503,14 +517,14 @@ $(document).ready(function(){
   <div id="Product Listings" class="tabcontent">
     <h2>Product Listings</h2>
     
-    <form action="updateuser.php" method="post">
+    <form action="updateproduct.php" method="post">
         <div class="databasecontainer">
             <div class="database-toolbar">
                 <input type="input" type="text" placeholder="Search.." id="search-bar-database">
             </div>
             
             <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
-                <table id="database" name="users_database">
+                <table id="database" name="products_database">
                     <tr> 
                         <th>Actions</th>
                         <th>Image1</th>
@@ -583,7 +597,107 @@ $(document).ready(function(){
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
                     </tr>
-                </table>
+                <?php
+
+                        while ($product = mysqli_fetch_array($query_products)) {
+                                echo "<tr>";
+                                echo "<td>
+                                        <a name = '". $product['ID']. "' id = '". $product['ID']. "' href= AdminPanel.php?productedit=".$product["ID"].">Edit</a>
+
+                                        <a name = '". $product['ID']. "' id =  '". $product['ID']. "' href= AdminPanel.php?productdelete=".$product["ID"].">Delete</a>
+                                    </td>";
+                                
+                                //If the edit button was pressed, then all of the fields below will be an input field ONLY on the row we want to change
+                                if(isset($_GET["productedit"]) && $_GET["productedit"] == $product['ID'])
+                                {
+                                    echo "<td>
+                                            <input type = 'text' name = 'image1_edit' value = '". $product['image1']. "' style='width: fit-content'> 
+                                          </td>";
+                                    echo "<td>
+                                          <input type = 'text' name = 'image2_edit' value = '". $product['image2']. "' style='width: fit-content'> 
+                                        </td>";
+                                    echo "<td>
+                                        <input type = 'text' name = 'image3_edit' value = '". $product['image3']. "' style='width: fit-content'> 
+                                      </td>";
+                                    echo "<td>
+                                            <input type = 'text' name = 'productid_edit' value = '". $product['ID']. "' style='width: fit-content' readonly> 
+                                          </td>";
+                                    echo "<td>
+                                          <input type = 'text' name = 'product_userid_edit' value = '". $product['UserID']. "' style='width: fit-content' readonly> 
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'prod_name_edit' value = '". $product['product_name']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'prod_cat_edit' value = '". $product['product_category']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'cult_edit' value = '". $product['cultivation_method']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'price_edit' value = '". $product['price']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'annual_edit' value = '". $product['annual_production']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'origin_edit' value = '". $product['place_of_origin']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prod_country_edit' value = '". $product['country']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'prod_state_edit' value = '". $product['state']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'area_edit' value = '". $product['area']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'minorder_edit' value = '". $product['minimum_order']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'packtype_edit' value = '". $product['package_type']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                        <input type = 'text' name = 'prod_description_edit' value = '". $product['description']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prod_contact_edit' value = '". $product['contact_info']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "</tr>";  
+                                }
+                                else
+                                {
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$product['image1']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$product['image2']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$product['image3']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>" . $product['ID'] . "</td>";
+                                    echo "<td>" . $product['UserID'] . "</td>";
+                                    echo "<td>" . $product['product_name'] . "</td>";
+                                    echo "<td>" . $product['product_category'] . "</td>";
+                                    echo "<td>" . $product['cultivation_method'] . "</td>";
+                                    echo "<td>" . $product['price'] . "</td>";
+                                    echo "<td>" . $product['annual_production'] . "</td>";
+                                    echo "<td>" . $product['place_of_origin'] . "</td>";
+                                    echo "<td>" . $product['country'] . "</td>";
+                                    echo "<td>" . $product['state'] . "</td>";
+                                    echo "<td>" . $product['area'] . "</td>";
+                                    echo "<td>" . $product['minimum_order'] . "</td>";
+                                    echo "<td>" . $product['package_type'] . "</td>";
+                                    echo "<td>" . $product['description'] . "</td>";
+                                    echo "<td>" . $product['contact_info'] . "</td>";
+                                    echo "</tr>";   
+                                }
+                            }
+                    ?>
+
+                    </table>
 
                 <p id = "no_results" style="display:none;">No records found<p>
 
@@ -593,7 +707,7 @@ $(document).ready(function(){
         <?php 
 
             //These buttons only appear if the admin has chosen to edit a record.
-            if(isset($_GET["useredit"]))
+            if(isset($_GET["productedit"]))
             {
                 echo "<button name='save_changes' class='continue-button' type='submit'>Save changes</button>";
                 echo "<button name='discard_changes' class='continue-button' type='submit' style='background-color: red'>Discard changes</button>";  
@@ -613,7 +727,7 @@ $(document).ready(function(){
     </div> 
   </div>
 
-  <script type="text/Javascript">
+  <script type="text/Javascript"> //This script is using AJAX to ask for permission from the admin to delete a user record via alert
       $(document).ready(function()
       {
           var deleteid = <?php if(isset($_GET["userdelete"])) 
@@ -623,6 +737,36 @@ $(document).ready(function(){
                 if(confirm('Are you sure to delete the user with id = ' + deleteid + '? You cannot undo this action!')) {
                 $.ajax({
                     url: 'deleteuser.php',
+                    type: 'POST',
+                    data: {deleteid: deleteid}, 
+                    success: function(response)
+                    {
+                      if(response == 1)
+                      {
+                          window.location = "AdminPanel.php"; //reload the page to update the database table
+                      }
+                    },
+                    error: function()
+                    {
+                        window.location = "AdminPanel.php"; //reload the page to update the database table
+                    }
+                });
+            }
+            }
+            
+        });
+    </script>
+
+<script type="text/Javascript"> //This script is using AJAX to ask for permission from the admin to delete a product record via alert
+      $(document).ready(function()
+      {
+          var deleteid = <?php if(isset($_GET["productdelete"])) 
+                                    {echo $_GET["productdelete"];} else {echo -1;} ?>;
+            if(deleteid > 0)
+            {
+                if(confirm('Are you sure to delete the product with id = ' + deleteid + '? You cannot undo this action!')) {
+                $.ajax({
+                    url: 'deleteproduct.php',
                     type: 'POST',
                     data: {deleteid: deleteid}, 
                     success: function(response)
