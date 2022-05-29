@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
     <div class="navbar">
     <a class="logo" href="#"> Digitagrize it</a>
@@ -17,8 +16,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
             <li><a href="#contact">Contact Us</a></li>
             <li>
             <div class="dropdown">
-                <a class="dropbtn"><?php echo $_SESSION['user']['username']; ?>
-                    <i class="fa fa-caret-down"></i>
+                <a class="dropbtn"><?php echo $_SESSION["user"]["username"]; ?>
+                <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-content">
                     <?php
@@ -28,7 +27,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
                         <?php } else
                          { ?>
                             <a href="UserProfile.php">Profile</a>
-                            <a href="addlisting.html">Add Listings</a>
+                            <a href="addproduct.php">Add Product</a>
+                            <a href="addproperty.php">Add Property</a>
                         <?php } ?>
                     
                     <a href="logout.php">Log Out</a>
