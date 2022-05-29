@@ -9,6 +9,9 @@
   $sql_products = "SELECT * from products";
   $query_products = mysqli_query($con, $sql_products);
 
+  $sql_properties = "SELECT * from properties";
+  $query_properties = mysqli_query($con, $sql_properties);
+
   if(!isset($_SESSION["active_tab"]))
   {
       $_SESSION["active_tab"] = "info_tab";
@@ -413,7 +416,7 @@ $(document).ready(function(){
 <div id="Property Listings" class="tabcontent">
     <h2>Property Listings</h2>
     
-    <form action="updateuser.php" method="post">
+    <form action="updateproperty.php" method="post">
         <div class="databasecontainer">
             <div class="database-toolbar">
                 <input type="input" type="text" placeholder="Search.." id="search-bar-database">
@@ -493,6 +496,107 @@ $(document).ready(function(){
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
                     </tr>
+
+                    <?php
+
+                        while ($property = mysqli_fetch_array($query_properties)) {
+                                echo "<tr>";
+                                echo "<td>
+                                        <a name = '". $property['ID']. "' id = '". $property['ID']. "' href= AdminPanel.php?propertyedit=".$property["ID"].">Edit</a>
+
+                                        <a name = '". $property['ID']. "' id =  '". $property['ID']. "' href= AdminPanel.php?propertydelete=".$property["ID"].">Delete</a>
+                                    </td>";
+                                
+                                //If the edit button was pressed, then all of the fields below will be an input field ONLY on the row we want to change
+                                if(isset($_GET["propertyedit"]) && $_GET["propertyedit"] == $property['ID'])
+                                {
+                                    echo "<td>
+                                            <input type = 'text' name = 'prop_image1_edit' value = '". $property['image1']. "' style='width: fit-content'> 
+                                          </td>";
+                                    echo "<td>
+                                          <input type = 'text' name = 'prop_image2_edit' value = '". $property['image2']. "' style='width: fit-content'> 
+                                        </td>";
+                                    echo "<td>
+                                        <input type = 'text' name = 'prop_image3_edit' value = '". $property['image3']. "' style='width: fit-content'> 
+                                      </td>";
+                                    echo "<td>
+                                            <input type = 'text' name = 'propertyid_edit' value = '". $property['ID']. "' style='width: fit-content' readonly> 
+                                          </td>";
+                                    echo "<td>
+                                          <input type = 'text' name = 'property_userid_edit' value = '". $property['UserID']. "' style='width: fit-content' readonly> 
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'prop_name_edit' value = '". $property['property_name']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'surface_edit' value = '". $property['surface_area']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'road_edit' value = '". $property['facing_road']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'alt_edit' value = '". $property['altitude']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'sun_edit' value = '". $property['average_sunlight']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'rain_edit' value = '". $property['average_rainfall']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prop_country_edit' value = '". $property['country']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'prop_state_edit' value = '". $property['state']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prop_area_edit' value = '". $property['area']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'recom_cult_edit' value = '". $property['recom_cult']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'drill_edit' value = '". $property['drill']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                        <input type = 'text' name = 'prop_description_edit' value = '". $property['description']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prop_contact_edit' value = '". $property['contact_info']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "</tr>";  
+                                }
+                                else
+                                {
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$property['image1']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$property['image2']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$property['image3']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>" . $property['ID'] . "</td>";
+                                    echo "<td>" . $property['UserID'] . "</td>";
+                                    echo "<td>" . $property['property_name'] . "</td>";
+                                    echo "<td>" . $property['surface_area'] . "</td>";
+                                    echo "<td>" . $property['facing_road'] . "</td>";
+                                    echo "<td>" . $property['altitude'] . "</td>";
+                                    echo "<td>" . $property['average_sunlight'] . "</td>";
+                                    echo "<td>" . $property['average_rainfall'] . "</td>";
+                                    echo "<td>" . $property['country'] . "</td>";
+                                    echo "<td>" . $property['state'] . "</td>";
+                                    echo "<td>" . $property['area'] . "</td>";
+                                    echo "<td>" . $property['recom_cult'] . "</td>";
+                                    echo "<td>" . $property['drill'] . "</td>";
+                                    echo "<td>" . $property['description'] . "</td>";
+                                    echo "<td>" . $property['contact_info'] . "</td>";
+                                    echo "</tr>";   
+                                }
+                            }
+                    ?>
+
                 </table>
 
                 <p id = "no_results" style="display:none;">No records found<p>
@@ -503,7 +607,7 @@ $(document).ready(function(){
         <?php 
 
             //These buttons only appear if the admin has chosen to edit a record.
-            if(isset($_GET["useredit"]))
+            if(isset($_GET["propertyedit"]))
             {
                 echo "<button name='save_changes' class='continue-button' type='submit'>Save changes</button>";
                 echo "<button name='discard_changes' class='continue-button' type='submit' style='background-color: red'>Discard changes</button>";  
@@ -767,6 +871,36 @@ $(document).ready(function(){
                 if(confirm('Are you sure to delete the product with id = ' + deleteid + '? You cannot undo this action!')) {
                 $.ajax({
                     url: 'deleteproduct.php',
+                    type: 'POST',
+                    data: {deleteid: deleteid}, 
+                    success: function(response)
+                    {
+                      if(response == 1)
+                      {
+                          window.location = "AdminPanel.php"; //reload the page to update the database table
+                      }
+                    },
+                    error: function()
+                    {
+                        window.location = "AdminPanel.php"; //reload the page to update the database table
+                    }
+                });
+            }
+            }
+            
+        });
+    </script>
+
+<script type="text/Javascript"> //This script is using AJAX to ask for permission from the admin to delete a property record via alert
+      $(document).ready(function()
+      {
+          var deleteid = <?php if(isset($_GET["propertydelete"])) 
+                                    {echo $_GET["propertydelete"];} else {echo -1;} ?>;
+            if(deleteid > 0)
+            {
+                if(confirm('Are you sure to delete the property with id = ' + deleteid + '? You cannot undo this action!')) {
+                $.ajax({
+                    url: 'deleteproperty.php',
                     type: 'POST',
                     data: {deleteid: deleteid}, 
                     success: function(response)
