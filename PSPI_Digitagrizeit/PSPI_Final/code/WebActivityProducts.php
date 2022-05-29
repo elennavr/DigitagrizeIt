@@ -71,8 +71,7 @@
                     <p> <?= $product['product_name'];?>, <?= $product['place_of_origin'];?>/ <?= $product['country'];?></p>
                     <h3>Fresh <?= $product['product_name'];?> for Sale in <?= $product['place_of_origin'];?>/<?= $product['state'];?>/<?= $product['area'];?></h3>
                     <p><?= $product['product_category'];?>/ cultivation: <?= $product['cultivation_method'];?>/ Anual production: <?= $product['annual_production'];?> tons</p>
-                    <h5>Sumbitted by:NAME</h5>
-                    <h5>Contact info: email, phonenumber, ...</h5>
+                    <h5>Contact info: <?= $product['contact_info'];?> ...</h5>
                     
                     <div class="product-price">
                       <p><?= $product['package_type'];?>, minimum order: <?= $product['minimum_order'];?> kg</p>
