@@ -47,7 +47,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["msg"] = "Something went wrong...";
                 }
 
-                header("location: AdminPanel.php");
+                if($_SESSION["user"]["is_admin"] == 1)
+                {
+                    header("location: AdminPanel.php");
+                }
+                else
+                {
+                    header("location: UserProfile.php");
+                }
 }
 
 

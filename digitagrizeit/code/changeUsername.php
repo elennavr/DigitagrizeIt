@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Include file which makes the
@@ -15,6 +18,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         $msg = 'Record updated successfully';
+
+        //when the user info is updated, then we need to fetch the user from the database again to display the updated information
+        $sql_user = "Select * from users where username='$username'";
+        $get_user = mysqli_fetch_assoc(mysqli_query($conn, $sql_user));
+
+        $_SESSION["user"] = $get_user;
+
     } else {
         $msg= 'Error updating record: ' . $conn->error;
     }
@@ -51,9 +61,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="password" name="password"></br></br>
             <button class="button scale">Save</button>
             </form>
-            <form action="UserProfile.php">
-                <button class="button-red scale1">Back</button>
-            </form>
+
+            <?php
+            if($_SESSION["user"]["is_admin"] == 1)
+            {
+                echo '<form action="AdminPanel.php">
+                        <button class="button-red scale1">Back</button>
+                    </form>';
+            }
+            else
+            {
+                echo '<form action="UserProfile.php">
+                        <button class="button-red scale1">Back</button>
+                    </form>';
+            }
+            ?>
+            
         </div>
     </body>
 </html> 

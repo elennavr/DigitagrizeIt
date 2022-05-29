@@ -98,6 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="icon" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="register.css" />
+    <link rel="stylesheet" href="alerts.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -140,8 +141,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="tab">
       <h2 align="center">Sign Up</h2>
      
-      
-
       <form action="register.php" method="post">
         <h4 class="centerCrec">Username</h4>
         <input

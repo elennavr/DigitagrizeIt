@@ -15,13 +15,35 @@
 <?php
 //php script for deleting from the user database
 
-if(isset($_GET['userdelete'])) //CHANGE THE CONDITION!
+/*if(isset($_GET['userdelete']))
 {
-    echo '<script type="text/JavaScript">
-        var result = confirmDelete('.$_GET['userdelete'].');
-    </script>';
-
+    echo $_GET['userdelete'];
+    echo "
+    <script type=\"text/JavaScript\">
+        $(document).ready(function() {
+        function confirmDelete()
+        {
+            var deleteid = ".$_GET["userdelete"].";
+            if(confirm('Are you sure to delete the user with id = ".$_GET["userdelete"]."? You cannot undo this action!')) {
+            $.ajax({
+                url: 'deleteuser.php',
+                type: 'POST',
+                data: {deleteid: deleteid}, 
+                success: function(response)
+                {
+                    if(response == 1)
+                    {
+                        unset(".$_GET['userdelete'].");
+                        header('location: AdminPanel.php'); //reload the page to update the database table
+                    }
+                }
+            });
+        }
+        confirmDelete();
+    </script>";
+    
 }
+*/
 
 if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
 {
@@ -49,17 +71,31 @@ if(isset($_GET["useredit"]) || isset($_GET["userdelete"]))
 $(document).ready(function(){
     $('#uploadpic').change(function(){
         var filename = $(this).val();
-       if(filename != "") { $("#upload-pic-container").show(); } //show the button
+       if(filename != "") 
+       { 
+           $("#upload-pic-container").show(); //shows the upload button 
+       } 
     });
 });
 </script>
+
+<script>
+        $(document).ready(function(){
+            $("#search-bar-database").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#database tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 
 </head>
 <body>
 
 <script src="tabnav.js"></script>
 <script src="tablesort.js"></script>
-<script src="filtertable.js"></script>
+<!--<script src="filtertable.js"></script> -->
 
 <?php
 
@@ -220,7 +256,7 @@ $(document).ready(function(){
   <form action="updateuser.php" method="post">
         <div class="databasecontainer">
             <div class="database-toolbar">
-                <input type="input" type="text" onkeyup="var num = filterTable('search-bar-database','database', 3)" placeholder="Search.." id="search-bar-database">
+                <input type="input" type="text" placeholder="Search.." id="search-bar-database">
             </div>
             
             <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
@@ -290,9 +326,9 @@ $(document).ready(function(){
                             { 
                                 echo "<tr>";
                                 echo "<td>
-                                        <a name = '". $row['userID']. "' href= AdminPanel.php?useredit=".$row["userID"].">Edit</a>
+                                        <a name = '". $row['userID']. "'"." class="."delete_user_record"." id = '". $row['userID']. "' href= AdminPanel.php?useredit=".$row["userID"].">Edit</a>
 
-                                        <a name = '". $row['username']. "' href= AdminPanel.php?userdelete=".$row["userID"].">Delete</a>
+                                        <a name = '". $row['username']. "' id =  '". $row['username']. "' href= AdminPanel.php?userdelete=".$row["userID"].">Delete</a>
                                     </td>";
                                 echo "<td>
                                         <img class="."table-image"." src=../images/media/".$row['profilepic']." alt="."profile image"." style="."width: 50px; height: 50px;".">
@@ -358,6 +394,9 @@ $(document).ready(function(){
                         }
                     ?>
                 </table>
+
+                <p id = "no_results" style="display:none;">No records found<p>
+
             </div>
         </div>
 
@@ -483,31 +522,44 @@ $(document).ready(function(){
 
   </div>
 
-<div id="Settings" class="tabcontent">
+  <div id="Settings" class="tabcontent">
     <h2>Account Settings</h2>
-
     <div class="buttonGroup">
-      <button type="button" class="settingbutton"> <h4> Change username </h4> </button>
-      <button type="button" class="settingbutton"> <h4> Change password </h4> </button>
-      <button type="button" class="settingbutton"> <h4> Change email </h4> </button>
-      <button type="button" class="settingbutton"> <h4 style="color: red;"> Delete account </h4> </button>
+      <button type="button" class="settingbutton"> <h4> <a href="changeUsername.php">Change username </a></h4> </button>        
+      <button type="button" class="settingbutton" href="changePassword.php"> <h4> <a href="changePassword.php">Change password </a></h4> </button>
+      <button type="button" class="settingbutton" href="changeEmail.php"> <h4><a href="changeEmail.php"> Change email </a></h4> </button>
     </div> 
-</div>
+  </div>
 
-<script>
-    function confirmDelete(userid)
-    {
-        var del = confirm("Are you sure you want to delete the user with id = " + userid + "?");
-        if (del == true)
-        {
-            $.ajax({url:"deleteuser.php"});
-        }
-        else
-        {
-            header("location: AdminPanel.php");
-        }
-    }
-</script>
+  <script type="text/Javascript">
+      $(document).ready(function()
+      {
+          var deleteid = <?php if(isset($_GET["userdelete"])) 
+                                    {echo $_GET["userdelete"];} else {echo 0;} ?>;
+            if(deleteid > 0)
+            {
+                if(confirm('Are you sure to delete the user with id = ' + deleteid + '? You cannot undo this action!')) {
+                $.ajax({
+                    url: 'deleteuser.php',
+                    type: 'POST',
+                    data: {deleteid: deleteid}, 
+                    success: function(response)
+                    {
+                      if(response == 1)
+                      {
+                          window.location = "AdminPanel.php"; //reload the page to update the database table
+                      }
+                    },
+                    error: function()
+                    {
+                        window.location = "AdminPanel.php"; //reload the page to update the database table
+                    }
+                });
+            }
+            }
+            
+        });
+    </script>
 
 <script>  // Get the element with id="defaultOpen" and click on it
     document.getElementById("info_tab").click();

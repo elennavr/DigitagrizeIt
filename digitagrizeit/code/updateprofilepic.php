@@ -77,7 +77,15 @@ if ($uploadOk == 1) {
     $_SESSION["errorUploadPic"] = true;
   }
 
-  header("location: AdminPanel.php");
+  if($_SESSION["user"]["is_admin"] == 1)
+  {
+      header("location: AdminPanel.php");
+  }
+  else
+  {
+      header("location: UserProfile.php");
+  }
+ 
 
 }
 
