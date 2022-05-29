@@ -59,6 +59,29 @@ img {
   height: 100%;
 }
 
+.google-s {
+  padding: 3px;
+  width: 300px;
+  margin-top: 70px;
+  position: absolute;
+  opacity: 0.2;
+}
+
+.google-s:hover {
+  opacity: 1;
+}
+
+.google-s input[type="text"] {
+  width: 220px;
+}
+
+.button-s {
+  background-color: rgb(236, 228, 225);
+  border: none;
+  padding: 12px 10px;
+  cursor: pointer;
+}
+
 .about-area {
   background-color: #cfe4b9;
   color: #fff;
