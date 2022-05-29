@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     //We also need to have the original information available, so we're going to retrieve the user by the id
     $userid = $_POST["id_edit"];
-    
+    $profilepic = $_POST["profilepic_edit"];
     $username = $_POST["username_edit"]; //All fields from the form in the admin panel
     $first_name = $_POST["fn_edit"];
     $last_name = $_POST["ln_edit"];
@@ -63,6 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if($can_update = true)
         {
             $sql = "UPDATE users set username='$username',
+                                        profilepic = '$profilepic',
                                         first_name= '$first_name',
                                         last_name= '$last_name',
                                         email= '$email',

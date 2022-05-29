@@ -223,3 +223,8 @@ input[type="text"], input[type="number"],input[type="password"], textarea, selec
   font-family: "Montserrat";
   font-weight: bold;
 }
+
+.settingbutton a
+{
+    text-decoration: none;
+}

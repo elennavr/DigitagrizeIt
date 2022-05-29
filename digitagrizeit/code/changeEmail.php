@@ -1,10 +1,16 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST") {
 
+$showSuccess = false; 
+$showError = false; 
+
+session_start();
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+      
     // Include file which makes the
     // Database Connection.
     include 'connect.php';   
-
+    
     $password = $_POST["password"];
     $email = $_POST["email"];
     if ($conn->connect_error) {
@@ -14,8 +20,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE users SET email='$email' WHERE password='$password'";
 
     if ($conn->query($sql) === TRUE) {
+        $showSuccess = true;
         $msg = 'Record updated successfully';
+
+        //when the user info is updated, then we need to fetch the user from the database again to display the updated information
+        $id = $_SESSION["user"]["userID"];
+        $sql_user = "Select * from users where userID='$id'";
+        $get_user = mysqli_fetch_assoc(mysqli_query($conn, $sql_user));
+
+        $_SESSION["user"] = $get_user;
+
     } else {
+        $showError = true;
         $msg= 'Error updating record: ' . $conn->error;
     }
 }
@@ -35,14 +51,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             rel="stylesheet"
         />
         <link rel= "stylesheet" href="changeUsername.css" type="text/css">
+        <link rel= "stylesheet" href="alerts.css" type="text/css">
     </head>
     <body>
         <div class="container" align="center">
             <img class="logo" src="../images/icons/favicon.png">
             <?php 
-                if(isset($msg)){  // Check if $msg is not empty
-                    echo '<h2 align="center">'.$msg.'</h2>'; // Display our message and wrap it with a div with the class "statusmsg".
-                } 
+                if($showSuccess) {
+    
+                    echo ' <div class="alert alert-success" role="alert">
+                        <strong>Success! </strong>'.$msg.' 
+                    </div> '; 
+                    $showSuccess = false;
+                    }
+                
+                    if($showError) {
+                
+                        echo ' <div class="alert alert-danger" role="alert"> 
+                        <strong>Error! </strong> '.$msg.'
+                    </div> '; 
+                    $showError = false;
+                    }
             ?>
             <h2>Change Your Email</h2>
             <form action="changeEmail.php" method="post">
@@ -52,9 +81,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" id="password" name="password"></br></br>
                 <button class="button scale">Save</button>
             </form>
-            <form action="UserProfile.php">
-                <button class="button-red scale1">Back</button>
-            </form>
+            <?php
+            if($_SESSION["user"]["is_admin"] == 1)
+            {
+                echo '<form action="AdminPanel.php">
+                        <button class="button-red scale1">Back</button>
+                    </form>';
+            }
+            else
+            {
+                echo '<form action="UserProfile.php">
+                        <button class="button-red scale1">Back</button>
+                    </form>';
+            }
+            ?>
         </div>
     </body>
-</html> 
+</html>

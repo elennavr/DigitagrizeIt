@@ -62,14 +62,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
               $msg = 'Your account has been made.';
               $showSuccess = true;
               //retreive that user from the database
-              //$sql_user = "SELECT * FROM users WHERE username='$username'";
-              //$get_user = mysqli_fetch_assoc(mysqli_query($conn, $sql_user));
+              $sql_user = "SELECT * FROM users WHERE username='$username'";
+              $get_user = mysqli_fetch_assoc(mysqli_query($conn, $sql_user));
       
-              //$_SESSION["loggedin"] = true;
-              //$_SESSION["user"] = $get_user;
-              //$_SESSION["username"] = $username;
+              $_SESSION["loggedin"] = true;
+              $_SESSION["user"] = $get_user;
+              $_SESSION["username"] = $username;
 
-              //header("location: index.php"); 
+              header("location: index.php"); 
 
              }
              
@@ -115,6 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     echo ' <div class="alert alert-success" role="alert">
         <strong>Success! </strong>'.$msg.' 
     </div> '; 
+    $showSuccess = false;
     }
 
     if($showError) {
@@ -122,6 +123,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         echo ' <div class="alert alert-danger" role="alert"> 
         <strong>Error! </strong> '.$msg.'
     </div> '; 
+    $showError = false;
     }
         
     if($exists) {
@@ -129,14 +131,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <strong>Warning! </strong> '.$msg.'
       </div> '; 
     }
+    $exists = false;
 
   ?>
-
-      <?php 
-      //if(isset($msg)){  // Check if $msg is not empty
-        //  echo '<h2 align="center">'.$msg.'</h2>'; // Display our message and wrap it with a div with the class "statusmsg".
-      //} 
-      ?>
     
     <div class="tab">
       <h2 align="center">Sign Up</h2>

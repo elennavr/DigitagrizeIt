@@ -183,6 +183,8 @@ body
   padding: 2px;
 }
 
+
+
 .table-image
 {
     width: 50px;
@@ -206,6 +208,7 @@ body
 .continue-button
 {
   margin-top: 50px;
+  margin-left: 10px; 
   background-color: #32cd32;
   border: none;
   color: white;
@@ -218,6 +221,48 @@ body
   float: right;
 }
 
-.continue-button:hover {
-  background-color: #269c26;
+.upload-button
+{
+  background-color: #32cd32 !important;
+  border: none !important;
+  color: white !important;
+  text-align: center !important;
+  padding: 0px !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  margin-bottom: 0px !important;
+  text-decoration: none !important;
+  padding: 5px 12px !important;
+}
+
+.tab-buttons .back-button
+{
+  background-color: #32cd32;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.tab-head .tab-buttons
+{
+  border: none !important;
+}
+
+.tab-buttons
+{
+  height: fit-content;
+  padding: 20px 12px;
+  background-color: #d3d3d3;
+  position: relative;
+  border: 2px solid #ccc;
+  border-bottom: none;
+}
+
+.continue-button:hover, .back-button:hover, .upload-button:hover {
+  filter: brightness(85%);
 }

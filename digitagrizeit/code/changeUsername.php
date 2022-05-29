@@ -1,5 +1,8 @@
 <?php
 
+$showSuccess = false; 
+$showError = false; 
+
 session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,6 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "UPDATE users SET username='$username' WHERE password='$password'";
 
     if ($conn->query($sql) === TRUE) {
+        $showSuccess = true;
         $msg = 'Record updated successfully';
 
         //when the user info is updated, then we need to fetch the user from the database again to display the updated information
@@ -26,6 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user"] = $get_user;
 
     } else {
+        $showError = true;
         $msg= 'Error updating record: ' . $conn->error;
     }
 }
@@ -44,14 +49,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             rel="stylesheet"
         />
         <link rel= "stylesheet" href="changeUsername.css" type="text/css">
+        <link rel= "stylesheet" href="alerts.css" type="text/css">
     </head>
     <body>
         <div class="container" align="center">
             <img class="logo" src="../images/icons/favicon.png">
             <?php 
-                if(isset($msg)){  // Check if $msg is not empty
-                    echo '<h2 align="center">'.$msg.'</h2>'; // Display our message and wrap it with a div with the class "statusmsg".
-                } 
+                if($showSuccess) {
+    
+                    echo ' <div class="alert alert-success" role="alert">
+                        <strong>Success! </strong>'.$msg.' 
+                    </div> '; 
+                    $showSuccess = false;
+                    }
+                
+                    if($showError) {
+                
+                        echo ' <div class="alert alert-danger" role="alert"> 
+                        <strong>Error! </strong> '.$msg.'
+                    </div> '; 
+                    $showError = false;
+                    }
             ?>
             <form action="changeUsername.php" method="post">
             <h2>Change Your Username</h2>
