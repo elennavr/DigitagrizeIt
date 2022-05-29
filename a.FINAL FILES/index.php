@@ -34,7 +34,12 @@
   </head>
   <body>
     <?php include("navigation.php"); ?>
-    
+    <div class="google-s">
+    <form action="https://www.google.com/search" method="GET">
+        <input type="text" name="q" placeholder="Google Search">
+        <input class="button-s" type="submit" value="Search">
+    </form>
+    </div>
     <section id="home">
       <script
         language="javascript"
@@ -42,7 +47,7 @@
         src="home.txt"
       ></script> 
     </section>
-
+      
     <section class="about-area" id="about">
       <div class="wrapper">
         <div>
