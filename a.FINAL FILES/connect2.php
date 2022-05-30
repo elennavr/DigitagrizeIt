@@ -9,7 +9,7 @@
       
 
     if($con) {
-        echo "success"; 
+        //echo "success"; 
     } 
     else {
         die("Error". mysqli_connect_error()); 
