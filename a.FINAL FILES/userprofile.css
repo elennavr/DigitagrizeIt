@@ -95,37 +95,37 @@ body {
   padding: 16px 32px;
 }
 
-#database td,
-#database th {
+.database td,
+.database th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#database th:first-of-type {
+.database th:first-of-type {
   border-top-left-radius: 10px;
 }
-#database th:last-of-type {
+.database th:last-of-type {
   border-top-right-radius: 10px;
 }
 
-#database tr:last-of-type td:first-of-type {
+.database tr:last-of-type td:first-of-type {
   border-bottom-left-radius: 10px;
 }
-#database tr:last-of-type td:last-of-type {
+.database tr:last-of-type td:last-of-type {
   border-bottom-right-radius: 10px;
 }
 
-#database tr:nth-child(even) {
+.database tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-#database tr:nth-child(odd) {
+.database tr:nth-child(odd) {
   background-color: lightgrey;
 }
-#database tr:hover {
+.database tr:hover {
   background-color: #ddd;
 }
 
-#database th {
+.database th {
   padding-top: 4px;
   padding-bottom: 4px;
   text-align: left;
@@ -148,7 +148,7 @@ body {
   cursor: pointer;
 }
 
-#search-bar-database {
+.search-bar-database {
   background-image: url("../images/icons/search-line.png"); /* Add a search icon to input */
   background-position: 2px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */

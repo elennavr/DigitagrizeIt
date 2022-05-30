@@ -1,6 +1,19 @@
 <?php
   session_start();
   include 'connect.php';
+  include("connect2.php");
+
+  $userid = $_SESSION["user"]["userID"];
+  $sql_products = "SELECT * from products WHERE userID='$userid'";
+  $query_products = mysqli_query($con, $sql_products);
+
+  $sql_properties = "SELECT * from properties WHERE userID='$userid'";
+  $query_properties = mysqli_query($con, $sql_properties);
+
+  if(!isset($_SESSION["active_tab"]))
+  {
+      $_SESSION["active_tab"] = "info_tab";
+  }
 ?>
 
 
@@ -40,6 +53,7 @@ $(document).ready(function(){
 <body>
 
 <script src="tabnav.js"></script>
+<script src="tablesort.js"></script>
 
 <?php
 
@@ -296,19 +310,214 @@ $(document).ready(function(){
     </div>
 </div>
 
-<div class="add-button">
-  <img src="../images/icons/add.png" alt="add listing" style="width: 50px; height: 50px;"></img>
-</div>
-
 </div>
 
 <div id="Land" class="tabcontent">
   <h2>Land/Property Listings</h2>
-  <p>You have not created any land or property listings yet.</p>
+  
+  <form action="updateproperty.php" method="post">
+        <div class="databasecontainer">
+            <div class="database-toolbar">
+                <input type="input" type="text" placeholder="Search.." id="search-bar-properties" class = "search-bar-database">
+            </div>
+            
+            <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
+                <table class="database" id="property_database">
+                <thead>
+                    <tr> 
+                        <th>Actions</th>
+                        <th>Image1</th>
+                        <th>Image2</th>
+                        <th>Image3</th>
+                        <th>
+                            <h4>ListingID
+                                <button class="header-button" type="button" onclick="sortNumerical(4,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
+                        <th>
+                            <h4>CreatorID
+                                <button class="header-button" type="button" onclick="sortNumerical(5,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
+                        <th>
+                            <h4>Property Name<button class="header-button" type="button" onclick="sortAlphabetical(6,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>    
+                        </th>
+                        <th>
+                            <h4>Surface Area<button class="header-button" type="button" onclick="sortNumerical(7,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
+                        <th>
+                            <h4>Facing Road<button class="header-button" type="button" onclick="sortAlphabetical(8,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
 
-  <div class="add-button">
-    <img src="../images/icons/add.png" alt="add listing" style="width: 50px; height: 50px;"></img>
-  </div>
+                        <th>
+                        <h4>Altitude<button class="header-button" type="button" onclick="sortNumerical(9,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
+                        <th>
+                        <h4>Average Sunlight<button class="header-button" type="button" onclick="sortNumerical(10,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
+                        <th>
+                        <h4>Average Rainfall<button class="header-button" type="button" onclick="sortNumerical(11,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
+                        <th>Country <button class="header-button" type="button" onclick="sortAlphabetical(12,'property_database')">
+                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                        </button></th>
+                        <th>State <button class="header-button" type="button" onclick="sortAlphabetical(13,'property_database')">
+                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                        </button></th>
+                        <th>Area <button class="header-button" type="button" onclick="sortAlphabetical(14,'property_database')">
+                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                        </button></th>
+                        <th>Recom. Cultivation <button class="header-button" type="button" onclick="sortAlphabetical(15,'property_database')">
+                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                        </button></th>
+                        <th>Drilling <button class="header-button" type="button" onclick="sortNumerical(16,'property_database')">
+                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                        </button></th>
+                        <th>
+                        <h4>Description <button class="header-button" type="button" onclick="sortAlphabetical(17,'property_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></h4>
+                        </th>
+                        <th> Contact Info <button class="header-button" type="button" onclick="sortAlphabetical(18,'property_database')">
+                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                        </button></th>
+                    </tr>
+                </thead>
+
+                <tbody id="properties_data">
+                    <?php
+
+                        while ($property = mysqli_fetch_array($query_properties)) {
+                                echo "<tr>";
+                                echo "<td>
+                                        <a name = '". $property['ID']. "' id = '". $property['ID']. "' href= AdminPanel.php?propertyedit=".$property["ID"].">Edit</a>
+
+                                        <a name = '". $property['ID']. "' id =  '". $property['ID']. "' href= AdminPanel.php?propertydelete=".$property["ID"].">Delete</a>
+                                    </td>";
+                                
+                                //If the edit button was pressed, then all of the fields below will be an input field ONLY on the row we want to change
+                                if(isset($_GET["propertyedit"]) && $_GET["propertyedit"] == $property['ID'])
+                                {
+                                    echo "<td>
+                                            <input type = 'text' name = 'prop_image1_edit' value = '". $property['image1']. "' style='width: fit-content'> 
+                                          </td>";
+                                    echo "<td>
+                                          <input type = 'text' name = 'prop_image2_edit' value = '". $property['image2']. "' style='width: fit-content'> 
+                                        </td>";
+                                    echo "<td>
+                                        <input type = 'text' name = 'prop_image3_edit' value = '". $property['image3']. "' style='width: fit-content'> 
+                                      </td>";
+                                    echo "<td>
+                                            <input type = 'text' name = 'propertyid_edit' value = '". $property['ID']. "' style='width: fit-content' readonly> 
+                                          </td>";
+                                    echo "<td>
+                                          <input type = 'text' name = 'property_userid_edit' value = '". $property['UserID']. "' style='width: fit-content' readonly> 
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'prop_name_edit' value = '". $property['property_name']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'surface_edit' value = '". $property['surface_area']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'road_edit' value = '". $property['facing_road']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'alt_edit' value = '". $property['altitude']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'sun_edit' value = '". $property['average_sunlight']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'rain_edit' value = '". $property['average_rainfall']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prop_country_edit' value = '". $property['country']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'prop_state_edit' value = '". $property['state']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prop_area_edit' value = '". $property['area']. "' style='width: fit-content'>
+                                </td>";
+                                        echo "<td> 
+                                        <input type = 'text' name = 'recom_cult_edit' value = '". $property['recom_cult']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                            <input type = 'text' name = 'drill_edit' value = '". $property['drill']. "' style='width: fit-content'>
+                                        </td>";
+                                    echo "<td> 
+                                        <input type = 'text' name = 'prop_description_edit' value = '". $property['description']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "<td> 
+                                    <input type = 'text' name = 'prop_contact_edit' value = '". $property['contact_info']. "' style='width: fit-content'>
+                                    </td>";
+                                    echo "</tr>";  
+                                }
+                                else
+                                {
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$property['image1']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$property['image2']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>
+                                        <img class="."table-image"." src=../images/media/".$property['image3']." alt="."image1"." style="."width: 50px; height: 50px;".">
+                                    </td>";
+                                    echo "<td>" . $property['ID'] . "</td>";
+                                    echo "<td>" . $property['UserID'] . "</td>";
+                                    echo "<td>" . $property['property_name'] . "</td>";
+                                    echo "<td>" . $property['surface_area'] . "</td>";
+                                    echo "<td>" . $property['facing_road'] . "</td>";
+                                    echo "<td>" . $property['altitude'] . "</td>";
+                                    echo "<td>" . $property['average_sunlight'] . "</td>";
+                                    echo "<td>" . $property['average_rainfall'] . "</td>";
+                                    echo "<td>" . $property['country'] . "</td>";
+                                    echo "<td>" . $property['state'] . "</td>";
+                                    echo "<td>" . $property['area'] . "</td>";
+                                    echo "<td>" . $property['recom_cult'] . "</td>";
+                                    echo "<td>" . $property['drill'] . "</td>";
+                                    echo "<td>" . $property['description'] . "</td>";
+                                    echo "<td>" . $property['contact_info'] . "</td>";
+                                    echo "</tr>";   
+                                }
+                            }
+                    ?>
+                </tbody>
+
+                </table>
+
+                <p id = "no_results" style="display:none;">No records found<p>
+
+            </div>
+        </div>
+
+        <?php 
+
+            //These buttons only appear if the admin has chosen to edit a record.
+            if(isset($_GET["propertyedit"]))
+            {
+                echo "<button name='save_changes' class='continue-button' type='submit'>Save changes</button>";
+                echo "<button name='discard_changes' class='continue-button' type='submit' style='background-color: red'>Discard changes</button>";  
+            }
+        ?>
+
+    </form>
     
 </div>
 
