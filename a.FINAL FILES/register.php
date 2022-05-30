@@ -156,6 +156,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           type="password"
           name="password1"
           id="myPSW"
+          pattern=".{8,}" 
+          title="Eight or more characters"
           required
         />
         <input class="centerCrec" type="checkbox" onclick="showPSW()" />Show
