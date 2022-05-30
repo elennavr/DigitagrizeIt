@@ -23,15 +23,27 @@ if(isset($_POST['submit'])) {
     $uploadOk = 1;
 
     // Check file size
-    if ($_FILES["image1"]["size"] > 5000000 || $_FILES["image2"]["size"] > 5000000 || $_FILES["image3"]["size"] > 5000000) {
-        
-        echo '<script type="text/javascript"> alert ("Sorry, one of your files is too large. 5MB is the maximum limit.")</script>';
+    if (file_exists($image1) && $_FILES["image1"]["size"] > 5000000) {
+        echo '<script type="text/javascript"> alert ("Sorry, image is too large. 5MB is the maximum limit.")</script>';
         $uploadOk = 0;
     }
 
+    if (file_exists($image2) && $_FILES["image2"]["size"] > 5000000) {
+        echo '<script type="text/javascript"> alert ("Sorry, image is too large. 5MB is the maximum limit.")</script>';
+        $uploadOk = 0;
+    }
+
+    if (file_exists($image3) && $_FILES["image3"]["size"] > 5000000) {
+        echo '<script type="text/javascript"> alert ("Sorry, image is too large. 5MB is the maximum limit.")</script>';
+        $uploadOk = 0;
+    }
+
+    move_uploaded_file($_FILES["image1"]["tmp_name"],$target_file1);
+    move_uploaded_file($_FILES["image2"]["tmp_name"],$target_file2);
+    move_uploaded_file($_FILES["image3"]["tmp_name"],$target_file3);    
+    
     if ($uploadOk == 1) {
 
-        if (move_uploaded_file($_FILES["image1"]["tmp_name"],$target_file1) && move_uploaded_file($_FILES["image2"]["tmp_name"],$target_file2) && move_uploaded_file($_FILES["image3"]["tmp_name"],$target_file3)){            
         
             $property_name = $_POST["property_name"];  
             $surface_area = $_POST["surface_area"];
@@ -59,7 +71,7 @@ if(isset($_POST['submit'])) {
             }
         }
     }
-}
+
 ?>
 
 <!DOCTYPE html>
