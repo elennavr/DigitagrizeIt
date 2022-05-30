@@ -1,29 +1,67 @@
 <?php
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+include 'connect2.php'; 
+
+if(isset($_POST['submit'])) {
+
+    session_start();
+    $userid =  $_SESSION["user"]["userID"];
+    $c1 = $_SESSION["user"]["first_name"];
+    $c2 = $_SESSION["user"]["last_name"];
+    $c3 = $_SESSION["user"]["phone_num"];
+    $c4 = $_SESSION["user"]["email"];
+    $contact_info = $c1 . ',' . $c2 . ',' . $c3 . ',' . $c4;
     
-    include 'connect2.php'; 
-    
-    $property_name = $_POST["property_name"];  
-    $surface_area = $_POST["surface_area"];
-    $facing_road = $_POST["facing_road"];
-    $altitude = $_POST["altitude"];
-    $average_sunlight = $_POST["average_sunlight"];
-    $average_rainfall = $_POST["average_rainfall"];
-    $country = $_POST["country"];
-    $state = $_POST["state"];
-    $area = $_POST["area"];
-    $recom_cult = $_POST["recom_cult"];
-    $drill = $_POST["drill"];
-    $description = $_POST["description"];
+    $image1 = $_FILES["image1"]["name"];
+    $image2 = $_FILES["image2"]["name"];
+    $image3 = $_FILES["image3"]["name"];
 
+    $target_dir = "../images/media/";
+    $target_file1 = $target_dir . basename($_FILES["image1"]["name"]);
+    $target_file2 = $target_dir . basename($_FILES["image2"]["name"]);
+    $target_file3 = $target_dir . basename($_FILES["image3"]["name"]);
+    $uploadOk = 1;
 
-    $sql = "INSERT INTO properties (property_name, surface_area, facing_road, altitude, average_sunlight, average_rainfall, country, state, area, recom_cult, drill, description) 
-                VALUES ('$property_name', '$surface_area', '$facing_road','$altitude', '$average_sunlight', '$average_rainfall', '$country', '$state', '$area', '$recom_cult', '$drill', '$description');";
+    // Check file size
+    if ($_FILES["image1"]["size"] > 5000000 || $_FILES["image2"]["size"] > 5000000 || $_FILES["image3"]["size"] > 5000000) {
+        
+        echo '<script type="text/javascript"> alert ("Sorry, one of your files is too large. 5MB is the maximum limit.")</script>';
+        $uploadOk = 0;
+    }
 
-    $result= mysqli_query($con,$sql);
+    if ($uploadOk == 1) {
+
+        if (move_uploaded_file($_FILES["image1"]["tmp_name"],$target_file1) && move_uploaded_file($_FILES["image2"]["tmp_name"],$target_file2) && move_uploaded_file($_FILES["image3"]["tmp_name"],$target_file3)){            
+        
+            $property_name = $_POST["property_name"];  
+            $surface_area = $_POST["surface_area"];
+            $facing_road = $_POST["facing_road"];
+            $altitude = $_POST["altitude"];
+            $average_sunlight = $_POST["average_sunlight"];
+            $average_rainfall = $_POST["average_rainfall"];
+            $country = $_POST["country"];
+            $state = $_POST["state"];
+            $area = $_POST["area"];
+            $recom_cult = $_POST["recom_cult"];
+            $drill = $_POST["drill"];
+            $description = $_POST["description"];
+
+            $sql = "INSERT INTO `properties` (`UserID`, `property_name`, `surface_area`, `facing_road`, `altitude`, `average_sunlight`, `average_rainfall`, `country`, `state`, `area`, `recom_cult`, `drill`, `description`,`contact_info`, `image1`,`image2`,`image3`) 
+            VALUES ('$userid', '$property_name', '$surface_area', '$facing_road','$altitude', '$average_sunlight', '$average_rainfall', '$country', '$state', '$area', '$recom_cult', '$drill', '$description', '$contact_info', '$image1','$image2','$image3');";
+
+            $query_run  = mysqli_query($con,$sql);      
+
+            if($query_run){
+                echo '<script type="text/javascript"> alert ("Property uploaded")</script>';
+            }
+            else{
+                echo '<script type="text/javascript"> alert ("Property not uploaded")</script>';
+            }
+        }
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -34,6 +72,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="master.css" type="text/css">
     <link rel="stylesheet" href="gradient.css" type="text/css">
     <link rel="stylesheet" href="addproperty.css" type="text/css">
+    <link rel="stylesheet" href="breadcrumb.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -41,18 +80,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+   
     <h2>Add Property</h2>
-    <form action="addproperty.php" method="post">
+    <form action="addproperty.php" method="post" enctype="multipart/form-data">
 
         <div class="container">
+        <ul class="breadcrumb size">
+        <li><a href="index.php">Home</a></li>
+        <li>Add Property</li>
+        </ul>
 
             <div class="row">
                 <div class="col-50">
+
                     <h3>Property Characteristics</h3>
                     <label for="propname"><i class="fas fa-tags	"></i> Property Name</label>
                     <input type="text" id="pname" name="property_name" placeholder="No. 173" required>
 
-                    <label for="sarea"><i class="fa fa-area-chart"></i> Surface Area</label>
+                    <label for="sarea"><i class="fa fa-area-chart"></i> Surface Area (sq. km.)</label>
                     <input type="number" id="sarea" name="surface_area" step="0.01" placeholder="5.5" required>
 
                     <label for="froad"><i class="fa fa-road"></i> Facing Road</label>
@@ -72,13 +117,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="number" id="arainfall" name="average_rainfall" placeholder="45" required>
 
                     <h3>Media </h3>
-                    <p>Select up to 6 images showing your property.</p>
+                    <p>Select up to 3 images showing your property.</p>
                     <label for="img"><i class="fa fa-photo"></i> Select images:</label>
-                    <input type="file" id="img" name="img" accept="image/*" multiple>
-                    <input type="submit">
+                    <input type="file" id="image1" name="image1" accept=".jpg, .jpeg, .png"><br>
+                    <input type="file" id="image2" name="image2" accept=".jpg, .jpeg, .png"><br>
+                    <input type="file" id="image3" name="image3" accept=".jpg, .jpeg, .png">
+                                         
                 </div>
 
                 <div class="col-50">
+
                     <h3>Location</h3>
                     <label for="country"><i class="fa fa-flag"></i> Country</label>
                     <input type="text" id="cname" name="country" placeholder="Greece" required>
@@ -100,7 +148,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="drill_yes">Yes</label>
                         </div>
                         <div class="col-25">
-                            <input type="radio" name="drill" id="drill_no" value="No">
+                            <input type="radio" name="drill" id="drill_no" value="No" checked='checked'>
                             <label for="drill_no">No</label>
                         </div>
                         <div class="col-25"></div>
@@ -108,11 +156,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <h3>Description</h3>
-                    <label for="description"><i class="fa fa-info"></i><i class="fa fa-info"></i> Give more information
-                        about your property in the following box.</label>
-                    <textarea maxlength="255" rows="4" style="width: 100%;" name="description"
-                        placeholder="Enter description here..."></textarea>
+                    <label for="description"><i class="fa fa-info"></i><i class="fa fa-info"></i> Give more information about your property in the following box.</label>
+                    <textarea maxlength="255" rows="4" style="width: 100%;" name="description" placeholder="Enter description here..."></textarea>
                 </div>
+
             </div>
             <br>
 
@@ -124,13 +171,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <p>Your listing should comply with the website's terms and conditions.</p>
             <br>
             <label>
-                <input type="checkbox" id="agree" name="terms-agree" required> I agree to the website's terms and
-                conditions.
-            </label>
+                <input type="checkbox" id="agree" name="terms-agree" required> I agree to the website's terms and conditions.</label>
             <br>
             <button class="btn" name="submit" type="submit" id="publish">Publish</button>
+        
+        </div>
     </form>
-    </div>
 
 </body>
 

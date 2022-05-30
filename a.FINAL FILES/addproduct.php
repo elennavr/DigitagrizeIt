@@ -1,26 +1,66 @@
 <?php
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    include 'connect2.php'; 
-    
-    $product_name = $_POST["product_name"]; 
-    $product_category = $_POST["product_category"]; 
-    $cultivation_method = $_POST["cultivation_method"];
-    $price = $_POST["price"];
-    $annual_production = $_POST["annual_production"];
-    $place_of_origin = $_POST["place_of_origin"];
-    $country = $_POST["country"];
-    $state = $_POST["state"];
-    $area = $_POST["area"];
-    $minimum_order = $_POST["minimum_order"];
-    $package_type = $_POST["package_type"];
-    
+include 'connect2.php'; 
 
-    $sql = "INSERT INTO products (product_name, product_category, cultivation_method, price, annual_production, place_of_origin, country, state, area, minimum_order, package_type) 
-                VALUES ('$product_name', '$product_category', '$cultivation_method', '$price', '$annual_production', '$place_of_origin', '$country', '$state', '$area', '$minimum_order', '$package_type');";
+if(isset($_POST['submit'])) {
+    
+    session_start();
+    $userid =  $_SESSION["user"]["userID"];
+    $c1 = $_SESSION["user"]["first_name"];
+    $c2 = $_SESSION["user"]["last_name"];
+    $c3 = $_SESSION["user"]["phone_num"];
+    $c4 = $_SESSION["user"]["email"];
+    $contact_info = $c1 . ',' . $c2 . ',' . $c3 . ',' . $c4;
 
-    $result= mysqli_query($con,$sql);
+    $image1 = $_FILES["image1"]["name"];
+    $image2 = $_FILES["image2"]["name"];
+    $image3 = $_FILES["image3"]["name"];
+
+    $target_dir = "../images/media/";
+    $target_file1 = $target_dir . basename($_FILES["image1"]["name"]);
+    $target_file2 = $target_dir . basename($_FILES["image2"]["name"]);
+    $target_file3 = $target_dir . basename($_FILES["image3"]["name"]);
+    $uploadOk = 1;
+
+    // Check file size
+    if ($_FILES["image1"]["size"] > 5000000 || $_FILES["image2"]["size"] > 5000000 || $_FILES["image3"]["size"] > 5000000) {
+        
+        echo '<script type="text/javascript"> alert ("Sorry, one of your files is too large. 5MB is the maximum limit.")</script>';
+        $uploadOk = 0;
+    }
+
+    if ($uploadOk == 1) {
+
+        if (move_uploaded_file($_FILES["image1"]["tmp_name"],$target_file1) && move_uploaded_file($_FILES["image2"]["tmp_name"],$target_file2) && move_uploaded_file($_FILES["image3"]["tmp_name"],$target_file3)){            
+        
+            $product_name = $_POST["product_name"]; 
+            $product_category = $_POST["product_category"]; 
+            $cultivation_method = $_POST["cultivation_method"];
+            $price = $_POST["price"];
+            $annual_production = $_POST["annual_production"];
+            $place_of_origin = $_POST["place_of_origin"];
+            $country = $_POST["country"];
+            $state = $_POST["state"];
+            $area = $_POST["area"];
+            $minimum_order = $_POST["minimum_order"];
+            $package_type = $_POST["package_type"];
+            $description = $_POST["description"];
+
+            
+
+            $sql = "INSERT INTO products (UserID, product_name, product_category, cultivation_method, price, annual_production, place_of_origin, country, state, area, minimum_order, package_type, description, contact_info, image1, image2, image3) 
+                VALUES ('$userid', '$product_name', '$product_category', '$cultivation_method', '$price', '$annual_production', '$place_of_origin', '$country', '$state', '$area', '$minimum_order', '$package_type','$description','$contact_info', '$image1','$image2','$image3');";
+
+            $query_run= mysqli_query($con,$sql);
+            
+            if($query_run){
+                echo '<script type="text/javascript"> alert ("Property uploaded")</script>';
+            }
+            else{
+                echo '<script type="text/javascript"> alert ("Property not uploaded")</script>';
+            }
+        }
+    }
 }
 ?>
 
@@ -34,6 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="master.css" type="text/css">
     <link rel="stylesheet" href="gradient.css" type="text/css">
     <link rel="stylesheet" href="addproduct.css" type="text/css">
+    <link rel="stylesheet" href="breadcrumb.css" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -42,12 +83,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <h2>Add Product</h2>
-    <form action="addproduct.php" method="post">
-
-    <div class="container">
+    <form action="addproduct.php" method="post" enctype="multipart/form-data">
+        
+        <div class="container">
+        <ul class="breadcrumb size">
+        <li><a href="index.php">Home</a></li>
+        <li>Add Product</li>
+        </ul>
 
         <div class="row">
             <div class="col-50">
+
                 <h3>Product Characteristics</h3><br>
                 <label for="prodname"><i class="fas fa-tags	"></i> Product Name</label>
                 <input type="text" id="pname" name="product_name" placeholder="Red Apples" required><br>
@@ -78,13 +124,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" id="origin" name="place_of_origin" placeholder="Pilio"><br>
 
                 <h3>Media </h3>
-                <p>Select up to 6 images showing your product.</p>
+                <p>Select up to 3 images showing your product.</p>
                 <label for="img"><i class="fa fa-photo"></i> Select images:</label>
-                <input type="file" id="img" name="img" accept="image/*" multiple>
-                <input type="submit">
+                <input type="file" id="image1" name="image1" accept=".jpg, .jpeg, .png"><br>
+                <input type="file" id="image2" name="image2" accept=".jpg, .jpeg, .png"><br>
+                <input type="file" id="image3" name="image3" accept=".jpg, .jpeg, .png">
+                                         
             </div>
 
             <div class="col-50">
+
                 <h3>Location</h3><br>
                 <label for="country"><i class="fa fa-flag"></i> Country</label>
                 <input type="text" id="cname" name="country" placeholder="Greece" required><br>
@@ -106,9 +155,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h3>Description</h3>
                 <label for="description"><i class="fa fa-info"></i><i class="fa fa-info"></i> Give more information
                     about your product in the following box.</label>
-                <textarea maxlength="255" rows="4" style="width: 100%;" placeholder="Enter description here..."
+                <textarea maxlength="255" rows="4" style="width: 100%;" placeholder="Enter description here..." name="description"
                     required></textarea>
             </div>
+
         </div>
         <br>
 
@@ -125,9 +175,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </label>
         <br>
         <button class="btn" name="submit" type="submit" id="publish">Publish</button>
-        </form>
-    </div>
-
+        
+        </div>
+    </form>
 </body>
 
 </html>
