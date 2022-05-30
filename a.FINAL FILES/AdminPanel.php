@@ -72,9 +72,27 @@ $(document).ready(function(){
 
 <script>
         $(document).ready(function(){
-            $("#search-bar-database").on("keyup", function() {
+            $("#search-bar-users").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#database tr").filter(function() {
+                $("#users_data tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $("#search-bar-properties").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#properties_data tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        $(document).ready(function(){
+            $("#search-bar-products").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#products_data tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -147,12 +165,9 @@ $(document).ready(function(){
                 echo $_SESSION["user"]["profilepic"];
                 ?>" 
                 alt="profile pic">
-                    <!-- The input field for the file upload is hidden for aesthetical reasons. When the pic icon is clicked
-                    it will trigger the input field button click with the below javascript code --> 
-                    
+
                     <input type="file" src = "../images/icons/edit-pngrepo-com.png" class="changepic" name="uploadpic" id="uploadpic" value="" />
-                    <!--<img src="../images/icons/edit-pngrepo-com.png" alt="change profile pic icon" style="width:40px; height: 40px;"> -->
-                    <!--</button> --> 
+
             </div>
       <div class="tab-buttons" id="upload-pic-container" hidden>
             <button type="submit" class="upload-button" name="upload-pic">Update picture</button>
@@ -251,70 +266,73 @@ $(document).ready(function(){
   <form action="updateuser.php" method="post">
         <div class="databasecontainer">
             <div class="database-toolbar">
-                <input type="input" type="text" placeholder="Search.." id="search-bar-database">
+                <input type="input" type="text" placeholder="Search.." id="search-bar-users" class = "search-bar-database">
             </div>
             
             <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
-                <table id="database" name="users_database">
-                    <tr> 
-                        <th>Actions</th>
-                        <th>Profile Image</th>
-                        <th>
-                            <h4>UserID
-                                <button class="header-button" type="button" onclick="sortNumerical(2)">
-                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                            </button></h4>
-                        </th>
-                        <th>
-                            <h4>Username<button class="header-button" type="button" onclick="sortAlphabetical(3)">
-                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                            </button></h4>    
-                        </th>
-                        <th>
-                            <h4>First Name<button class="header-button" type="button" onclick="sortAlphabetical(4)">
-                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                            </button></h4>
-                        </th>
-                        <th>
-                            <h4>Last Name<button class="header-button" type="button" onclick="sortAlphabetical(5)">
-                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                            </button></h4>
-                        </th>
+                <table class="database" id="users_database">
+                    <thead>
+                        <tr> 
+                            <th>Actions</th>
+                            <th>Profile Image</th>
+                            <th>
+                                <h4>UserID
+                                    <button class="header-button" type="button" onclick="sortNumerical(2, 'users_database')">
+                                    <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                                </button></h4>
+                            </th>
+                            <th>
+                                <h4>Username<button class="header-button" type="button" onclick="sortAlphabetical(3, 'users_database')">
+                                    <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                                </button></h4>    
+                            </th>
+                            <th>
+                                <h4>First Name<button class="header-button" type="button" onclick="sortAlphabetical(4, 'users_database')">
+                                    <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                                </button></h4>
+                            </th>
+                            <th>
+                                <h4>Last Name<button class="header-button" type="button" onclick="sortAlphabetical(5, 'users_database')">
+                                    <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                                </button></h4>
+                            </th>
 
-                        <th>
-                        <h4>Email<button class="header-button" type="button" onclick="sortAlphabetical(6)">
+                            <th>
+                            <h4>Email<button class="header-button" type="button" onclick="sortAlphabetical(6, 'users_database')">
+                                    <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                                </button></h4>
+                            </th>
+                            <th>
+                            <h4>About<button class="header-button" type="button" onclick="sortAlphabetical(7, 'users_database')">
+                                    <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                                </button></h4>
+                            </th>
+                            <th>
+                            <h4>Address<button class="header-button" type="button" onclick="sortAlphabetical(8, 'users_database')">
+                                    <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                                </button></h4>
+                            </th>
+                            <th>City <button class="header-button" type="button" onclick="sortAlphabetical(9, 'users_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                            </button></h4>
-                        </th>
-                        <th>
-                        <h4>About<button class="header-button" type="button" onclick="sortAlphabetical(7)">
+                            </button></th>
+                            <th>Country <button class="header-button" type="button" onclick="sortAlphabetical(10, 'users_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                            </button></h4>
-                        </th>
-                        <th>
-                        <h4>Address<button class="header-button" type="button" onclick="sortAlphabetical(8)">
+                            </button></th>
+                            <th>Postal Code <button class="header-button" type="button" onclick="sortAlphabetical(11, 'users_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                            </button></h4>
-                        </th>
-                        <th>City <button class="header-button" type="button" onclick="sortAlphabetical(9)">
-                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                        </button></th>
-                        <th>Country <button class="header-button" type="button" onclick="sortAlphabetical(10)">
-                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                        </button></th>
-                        <th>Postal Code <button class="header-button" type="button" onclick="sortAlphabetical(11)">
-                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                        </button></th>
-                        <th>Phone Number <button class="header-button" type="button" onclick="sortAlphabetical(12)">
-                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                        </button></th>
-                        <th>Recent Activity <button class="header-button" type="button" onclick="sortAlphabetical(13)">
-                            <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
-                        </button></th>
+                            </button></th>
+                            <th>Phone Number <button class="header-button" type="button" onclick="sortAlphabetical(12, 'users_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></th>
+                            <th>Recent Activity <button class="header-button" type="button" onclick="sortAlphabetical(13, 'users_database')">
+                                <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
+                            </button></th>
 
-                    </tr>
+                        </tr>
+                    </thead>
 
-                    <?php
+                    <tbody id="users_data">
+                        <?php
 
                         while ($row = mysqli_fetch_array($query_users)) {
                             if($row['userID'] != $_SESSION["user"]["userID"]) //Display all other users in the table except the connected user
@@ -392,6 +410,7 @@ $(document).ready(function(){
                             }
                         }
                     ?>
+                    </tbody>
                 </table>
 
                 <p id = "no_results" style="display:none;">No records found<p>
@@ -419,11 +438,12 @@ $(document).ready(function(){
     <form action="updateproperty.php" method="post">
         <div class="databasecontainer">
             <div class="database-toolbar">
-                <input type="input" type="text" placeholder="Search.." id="search-bar-database">
+                <input type="input" type="text" placeholder="Search.." id="search-bar-properties" class = "search-bar-database">
             </div>
             
             <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
-                <table id="database" name="property_database">
+                <table class="database" id="property_database">
+                <thead>
                     <tr> 
                         <th>Actions</th>
                         <th>Image1</th>
@@ -431,72 +451,74 @@ $(document).ready(function(){
                         <th>Image3</th>
                         <th>
                             <h4>ListingID
-                                <button class="header-button" type="button" onclick="sortNumerical(4)">
+                                <button class="header-button" type="button" onclick="sortNumerical(4,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
                             <h4>CreatorID
-                                <button class="header-button" type="button" onclick="sortNumerical(5)">
+                                <button class="header-button" type="button" onclick="sortNumerical(5,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                            <h4>Property Name<button class="header-button" type="button" onclick="sortAlphabetical(6)">
+                            <h4>Property Name<button class="header-button" type="button" onclick="sortAlphabetical(6,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>    
                         </th>
                         <th>
-                            <h4>Surface Area<button class="header-button" type="button" onclick="sortNumerical(7)">
+                            <h4>Surface Area<button class="header-button" type="button" onclick="sortNumerical(7,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                            <h4>Facing Road<button class="header-button" type="button" onclick="sortAlphabetical(8)">
+                            <h4>Facing Road<button class="header-button" type="button" onclick="sortAlphabetical(8,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
 
                         <th>
-                        <h4>Altitude<button class="header-button" type="button" onclick="sortNumerical(9)">
+                        <h4>Altitude<button class="header-button" type="button" onclick="sortNumerical(9,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                        <h4>Average Sunlight<button class="header-button" type="button" onclick="sortNumerical(10)">
+                        <h4>Average Sunlight<button class="header-button" type="button" onclick="sortNumerical(10,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                        <h4>Average Rainfall<button class="header-button" type="button" onclick="sortNumerical(11)">
+                        <h4>Average Rainfall<button class="header-button" type="button" onclick="sortNumerical(11,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
-                        <th>Country <button class="header-button" type="button" onclick="sortAlphabetical(12)">
+                        <th>Country <button class="header-button" type="button" onclick="sortAlphabetical(12,'property_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>State <button class="header-button" type="button" onclick="sortAlphabetical(13)">
+                        <th>State <button class="header-button" type="button" onclick="sortAlphabetical(13,'property_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>Area <button class="header-button" type="button" onclick="sortAlphabetical(14)">
+                        <th>Area <button class="header-button" type="button" onclick="sortAlphabetical(14,'property_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>Recom. Cultivation <button class="header-button" type="button" onclick="sortAlphabetical(15)">
+                        <th>Recom. Cultivation <button class="header-button" type="button" onclick="sortAlphabetical(15,'property_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>Drilling <button class="header-button" type="button" onclick="sortNumerical(16)">
+                        <th>Drilling <button class="header-button" type="button" onclick="sortNumerical(16,'property_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
                         <th>
-                        <h4>Description <button class="header-button" type="button" onclick="sortAlphabetical(17)">
+                        <h4>Description <button class="header-button" type="button" onclick="sortAlphabetical(17,'property_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
-                        <th> Contact Info <button class="header-button" type="button" onclick="sortAlphabetical(18)">
+                        <th> Contact Info <button class="header-button" type="button" onclick="sortAlphabetical(18,'property_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
                     </tr>
+                </thead>
 
+                <tbody id="properties_data">
                     <?php
 
                         while ($property = mysqli_fetch_array($query_properties)) {
@@ -596,6 +618,7 @@ $(document).ready(function(){
                                 }
                             }
                     ?>
+                </tbody>
 
                 </table>
 
@@ -624,11 +647,12 @@ $(document).ready(function(){
     <form action="updateproduct.php" method="post">
         <div class="databasecontainer">
             <div class="database-toolbar">
-                <input type="input" type="text" placeholder="Search.." id="search-bar-database">
+                <input type="input" type="text" placeholder="Search.." id="search-bar-products" class = "search-bar-database">
             </div>
             
             <div style="overflow-x:auto; overflow-y: auto; width: 100%; padding: 0; margin: 0;">
-                <table id="database" name="products_database">
+                <table class="database" id="products_database">
+                <thead>
                     <tr> 
                         <th>Actions</th>
                         <th>Image1</th>
@@ -636,71 +660,74 @@ $(document).ready(function(){
                         <th>Image3</th>
                         <th>
                             <h4>ListingID
-                                <button class="header-button" type="button" onclick="sortNumerical(4)">
+                                <button class="header-button" type="button" onclick="sortNumerical(4, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
                             <h4>CreatorID
-                                <button class="header-button" type="button" onclick="sortNumerical(5)">
+                                <button class="header-button" type="button" onclick="sortNumerical(5, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                            <h4>Product Name <button class="header-button" type="button" onclick="sortAlphabetical(6)">
+                            <h4>Product Name <button class="header-button" type="button" onclick="sortAlphabetical(6, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>    
                         </th>
                         <th>
-                            <h4>Product Category <button class="header-button" type="button" onclick="sortNumerical(7)">
+                            <h4>Product Category <button class="header-button" type="button" onclick="sortNumerical(7, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                            <h4>Cultivation Method <button class="header-button" type="button" onclick="sortAlphabetical(8)">
+                            <h4>Cultivation Method <button class="header-button" type="button" onclick="sortAlphabetical(8, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
 
                         <th>
-                        <h4>Price<button class="header-button" type="button" onclick="sortNumerical(9)">
+                        <h4>Price<button class="header-button" type="button" onclick="sortNumerical(9, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                        <h4>Annual Production <button class="header-button" type="button" onclick="sortNumerical(10)">
+                        <h4>Annual Production <button class="header-button" type="button" onclick="sortNumerical(10, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
                         <th>
-                        <h4>Origin <button class="header-button" type="button" onclick="sortNumerical(11)">
+                        <h4>Origin <button class="header-button" type="button" onclick="sortNumerical(11, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
-                        <th>Country <button class="header-button" type="button" onclick="sortAlphabetical(12)">
+                        <th>Country <button class="header-button" type="button" onclick="sortAlphabetical(12, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>State <button class="header-button" type="button" onclick="sortAlphabetical(13)">
+                        <th>State <button class="header-button" type="button" onclick="sortAlphabetical(13, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>Area <button class="header-button" type="button" onclick="sortAlphabetical(14)">
+                        <th>Area <button class="header-button" type="button" onclick="sortAlphabetical(14, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>Minimum Order <button class="header-button" type="button" onclick="sortAlphabetical(15)">
+                        <th>Minimum Order <button class="header-button" type="button" onclick="sortAlphabetical(15, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>Package Type <button class="header-button" type="button" onclick="sortNumerical(16)">
+                        <th>Package Type <button class="header-button" type="button" onclick="sortNumerical(16, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
                         <th>
-                        <h4>Description <button class="header-button" type="button" onclick="sortAlphabetical(17)">
+                        <h4>Description <button class="header-button" type="button" onclick="sortAlphabetical(17, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
-                        <th> Contact Info <button class="header-button" type="button" onclick="sortAlphabetical(18)">
+                        <th> Contact Info <button class="header-button" type="button" onclick="sortAlphabetical(18, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
                     </tr>
+                </thead>
+                
+                <tbody id = "products_data">
                 <?php
 
                         while ($product = mysqli_fetch_array($query_products)) {
@@ -802,6 +829,7 @@ $(document).ready(function(){
                     ?>
 
                     </table>
+                </tbody>
 
                 <p id = "no_results" style="display:none;">No records found<p>
 
@@ -852,9 +880,13 @@ $(document).ready(function(){
                     },
                     error: function()
                     {
-                        window.location = "AdminPanel.php"; //reload the page to update the database table
+                        window.location = "AdminPanel.php";
                     }
                 });
+            }
+            else
+            {
+                window.location = "AdminPanel.php";
             }
             }
             
@@ -886,6 +918,10 @@ $(document).ready(function(){
                     }
                 });
             }
+            else
+            {
+                window.location = "AdminPanel.php";
+            }
             }
             
         });
@@ -916,19 +952,22 @@ $(document).ready(function(){
                     }
                 });
             }
+            else
+            {
+                window.location = "AdminPanel.php";
+            }
             }
             
         });
     </script>
 
-<script>  // Get the element with id="defaultOpen" and click on it
+<script>
     document.getElementById("info_tab").click();
 </script>
 
 <script> //click on the current set active tab
     var active = '<?=$_SESSION["active_tab"]?>';
-    //if(editmode) //if the number is a positive integer (a user's id)
-        document.getElementById(active).click();
+    document.getElementById(active).click();
 </script>
 
 </body>

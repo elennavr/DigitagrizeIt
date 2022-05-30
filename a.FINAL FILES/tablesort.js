@@ -1,7 +1,8 @@
+/* From W3Schools */
 
-function sortAlphabetical(n) {
+function sortAlphabetical(n, database) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("database");
+  table = document.getElementById(database);
   switching = true;
   //Set the sorting direction to ascending:
   dir = "asc"; 
@@ -54,9 +55,9 @@ function sortAlphabetical(n) {
   }
 }
 
-function sortNumerical(n) {
+function sortNumerical(n, database) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("database");
+    table = document.getElementById(database);
     switching = true;
     //Set the sorting direction to ascending:
     dir = "asc"; 
@@ -109,5 +110,3 @@ function sortNumerical(n) {
       }
     }
   }
-
-  //TODO A date sort
