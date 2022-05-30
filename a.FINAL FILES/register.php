@@ -147,6 +147,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
           placeholder="username"
           name="username"
           id="myUSRNM"
+          pattern="[A-Za-z0-9]+"
+          title="Only use numbers and letters"
           required
         />
         <br />
