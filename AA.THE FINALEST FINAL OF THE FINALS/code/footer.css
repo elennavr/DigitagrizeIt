@@ -1,0 +1,39 @@
+.footer .fa {
+  padding: 10px;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 2px;
+  border-radius: 50%;
+}
+
+.footer .fa:hover {
+  opacity: 0.7;
+}
+
+.footer .fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.footer .fa-facebook {
+  background: #3b5998;
+  color: white;
+}
+
+.footer .fa-twitter {
+  background: #55acee;
+  color: white;
+}
+
+.footer {
+  position: relative;
+  left: 0;
+  bottom: -18px;
+  width: 100%;
+  background-color: #689f38;
+  color: white;
+  text-align: center;
+}
