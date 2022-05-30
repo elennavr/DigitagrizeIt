@@ -3,7 +3,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
     <div class="navbar">
     <img class="logoIMG" src="images/icons/favicon.png" alt="logo">
 
-    <a class="logo" href="#"> Digitagrize it</a>
+    <a class="logo" href="index.php"> Digitagrize it</a>
     <a class="toggle-button">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -17,7 +17,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
             <li><a href="index.php#faq">FAQ</a></li>
             <li><a href="index.php#contact">Contact Us</a></li>
             <li><div class="dropdown">
-                <a class="dropbtn">Hello,<?php echo $_SESSION['user']['username']; ?>
+                <a class="dropbtn"><br>Hello,<?php echo $_SESSION['user']['username']; ?>
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-content"> 
@@ -43,7 +43,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
     <div class="navbar">
     <img class="logoIMG" src="images/icons/favicon.png" alt="logo">
 
-        <a class="logo" href="#"> Digitagrize it</a>
+        <a class="logo" href="index.php"> Digitagrize it</a>
         <a class="toggle-button">
             <span class="bar"></span>
             <span class="bar"></span>
