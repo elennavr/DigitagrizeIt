@@ -11,22 +11,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     //We also need to have the original information available, so we're going to retrieve the user by the id
     $userid = $_POST["id_edit"];
     $profilepic = $_POST["profilepic_edit"];
-    $username = $_POST["username_edit"]; //All fields from the form in the admin panel
-    $first_name = $_POST["fn_edit"];
-    $last_name = $_POST["ln_edit"];
-    $email = $_POST["email_edit"];
-    $about = $_POST["about_edit"];
-    $address = $_POST["address_edit"];
-    $city = $_POST["city_edit"];
-    $country = $_POST["country_edit"];
+    $username = mysqli_real_escape_string($conn, $_POST["username_edit"]); //All fields from the form in the admin panel
+    $first_name = mysqli_real_escape_string($conn, $_POST["fn_edit"]);
+    $last_name = mysqli_real_escape_string($conn, $_POST["ln_edit"]);
+    $email = mysqli_real_escape_string($conn, $_POST["email_edit"]);
+    $about = mysqli_real_escape_string($conn, $_POST["about_edit"]);
+    $address = mysqli_real_escape_string($conn, $_POST["address_edit"]);
+    $city = mysqli_real_escape_string($conn, $_POST["city_edit"]);
+    $country = mysqli_real_escape_string($conn, $_POST["country_edit"]);
     $post = $_POST["pc_edit"];
     $phone = $_POST["phone_edit"];
     $act = $_POST["activity_edit"];
     
     $sql_original = "Select * from users where userID='$userid'";
     $result = mysqli_query($conn, $sql_original);
-
-    //$result = mysqli_query($conn, $sql);
     
     $num = mysqli_num_rows($result); //This is the original data for this user; 
     

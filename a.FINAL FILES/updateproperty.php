@@ -16,19 +16,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $image2 = $_POST["prop_image2_edit"];
     $image3 = $_POST["prop_image3_edit"];
     
-    $name = $_POST["prop_name_edit"]; //All fields from the form in the admin panel
-    $surface = $_POST["surface_edit"];
-    $road = $_POST["road_edit"];
-    $alt = $_POST["alt_edit"];
-    $sun = $_POST["sun_edit"];
-    $rain = $_POST["rain_edit"];
-    $state = $_POST["prop_state_edit"];
-    $country = $_POST["prop_country_edit"];
-    $area = $_POST["prop_area_edit"];
-    $cult = $_POST["recom_cult_edit"];
-    $drill = $_POST["drill_edit"];
-    $description = $_POST["prop_description_edit"];
-    $contact = $_POST["prop_contact_edit"];
+    $name = mysqli_real_escape_string($con, $_POST["prop_name_edit"]); //All fields from the form in the admin panel
+    $surface = mysqli_real_escape_string($con, $_POST["surface_edit"]);
+    $road = mysqli_real_escape_string($con, $_POST["road_edit"]);
+    $alt = mysqli_real_escape_string($con, $_POST["alt_edit"]);
+    $sun = mysqli_real_escape_string($con, $_POST["sun_edit"]);
+    $rain = mysqli_real_escape_string($con, $_POST["rain_edit"]);
+    $state = mysqli_real_escape_string($con, $_POST["prop_state_edit"]);
+    $country = mysqli_real_escape_string($con, $_POST["prop_country_edit"]);
+    $area = mysqli_real_escape_string($con, $_POST["prop_area_edit"]);
+    $cult = mysqli_real_escape_string($con, $_POST["recom_cult_edit"]);
+    $drill = mysqli_real_escape_string($con, $_POST["drill_edit"]);
+    $description = mysqli_real_escape_string($con, $_POST["prop_description_edit"]);
+    $contact = mysqli_real_escape_string($con, $_POST["prop_contact_edit"]);
     
     $sql_original = "Select * from properties where ID='$propertyid' and UserID='$propuser'";
     $result = mysqli_query($con, $sql_original);

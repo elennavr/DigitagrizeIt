@@ -413,7 +413,7 @@ $(document).ready(function(){
                     </tbody>
                 </table>
 
-                <p id = "no_results" style="display:none;">No records found<p>
+                <p id = "no_results_users" style="display:none;">No records found<p>
 
             </div>
         </div>
@@ -676,7 +676,7 @@ $(document).ready(function(){
                             </button></h4>    
                         </th>
                         <th>
-                            <h4>Product Category <button class="header-button" type="button" onclick="sortNumerical(7, 'products_database')">
+                            <h4>Product Category <button class="header-button" type="button" onclick="sortAlphabetical(7, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
@@ -697,7 +697,7 @@ $(document).ready(function(){
                             </button></h4>
                         </th>
                         <th>
-                        <h4>Origin <button class="header-button" type="button" onclick="sortNumerical(11, 'products_database')">
+                        <h4>Origin <button class="header-button" type="button" onclick="sortAlphabetical(11, 'products_database')">
                                 <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                             </button></h4>
                         </th>
@@ -713,7 +713,7 @@ $(document).ready(function(){
                         <th>Minimum Order <button class="header-button" type="button" onclick="sortAlphabetical(15, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
-                        <th>Package Type <button class="header-button" type="button" onclick="sortNumerical(16, 'products_database')">
+                        <th>Package Type <button class="header-button" type="button" onclick="sortAlphabetical(16, 'products_database')">
                             <img src = "../images/icons/sort.png" style="width: 15px; height: 15px;"></img>
                         </button></th>
                         <th>

@@ -16,20 +16,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $image2 = $_POST["image2_edit"];
     $image3 = $_POST["image3_edit"];
     
-
-    $name = $_POST["prod_name_edit"]; //All fields from the form in the admin panel
-    $category = $_POST["prod_cat_edit"];
-    $method = $_POST["cult_edit"];
-    $price = $_POST["price_edit"];
-    $annual = $_POST["annual_edit"];
-    $origin = $_POST["origin_edit"];
-    $state = $_POST["prod_state_edit"];
-    $country = $_POST["prod_country_edit"];
-    $area = $_POST["area_edit"];
-    $minorder = $_POST["minorder_edit"];
-    $packtype = $_POST["packtype_edit"];
-    $description = $_POST["prod_description_edit"];
-    $contact = $_POST["prod_contact_edit"];
+    $name = mysqli_real_escape_string($con, $_POST["prod_name_edit"]); //All fields from the form in the admin panel
+    $category = mysqli_real_escape_string($con, $_POST["prod_cat_edit"]);
+    $method = mysqli_real_escape_string ($con, $_POST["cult_edit"]);
+    $price = mysqli_real_escape_string ($con, $_POST["price_edit"]);
+    $annual = mysqli_real_escape_string ($con, $_POST["annual_edit"]);
+    $origin = mysqli_real_escape_string ($con, $_POST["origin_edit"]);
+    $state = mysqli_real_escape_string ($con, $_POST["prod_state_edit"]);
+    $country = mysqli_real_escape_string ($con, $_POST["prod_country_edit"]);
+    $area = mysqli_real_escape_string ($con, $_POST["area_edit"]);
+    $minorder = mysqli_real_escape_string ($con, $_POST["minorder_edit"]);
+    $packtype = mysqli_real_escape_string ($con, $_POST["packtype_edit"]);
+    $description = mysqli_real_escape_string ($con, $_POST["prod_description_edit"]);
+    $contact = mysqli_real_escape_string($con, $_POST["prod_contact_edit"]);
     
     $sql_original = "Select * from products where ID='$productid' and UserID='$produser'";
     $result = mysqli_query($con, $sql_original);

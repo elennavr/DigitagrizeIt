@@ -8,7 +8,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Database Connection.
     include 'connect.php';   
     
-    //We also need to have the original information available, so we're going to retrieve the user by the id
     $userid = $_SESSION["user"]["userID"];
 
     $about = mysqli_real_escape_string($conn, $_POST["input-aboutme"]);
