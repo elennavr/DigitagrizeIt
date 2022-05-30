@@ -66,8 +66,56 @@
           <p>Property Listings</p>
           <h1>Available properties from all over Europe</h1>
 
+          <?php
+          if(isset($_POST['search'])):
+            $searchq = $_POST['search'];
+            $searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
+            $query= mysqli_query($con, "SELECT * FROM properties WHERE property_name LIKE '%$searchq%' OR country LIKE '%$searchq%' OR surface_area LIKE '%$searchq%' OR altitude LIKE '%$searchq%' OR average_sunlight LIKE '%$searchq%' OR area LIKE '%$searchq%'");
+            $count = mysqli_num_rows($query);
+            if($count ==0){
+              $out = "No results!";
+            }
+            if($count>0):
+              while($properties = mysqli_fetch_array($query)): ?>
+                   <div class="product">
+                  <div class="product-img">
+                      <div class="pic-ctn">
+                          
+                              <img src='../images/media/<?php echo $properties["image1"];?>' alt="IMAGE-NOT-FOUND" class="pic" width="200" height="250">
+                              <img src='../images/media/<?php echo $properties["image2"];?>' alt="IMAGE-NOT-FOUND" class="pic" width="200" height="250">
+                              <img src='../images/media/<?php echo $properties["image3"];?>' alt="IMAGE-NOT-FOUND" class="pic" width="200" height="250">
+                  
+                      </div>
+                  </div>
+                  
+
+
+
+                  <div class="product-info">
+                    <p> <?= $properties['property_name'];?>, <?= $properties['state'];?>/ <?= $properties['country'];?></p>
+                    <h3><?= $properties['property_name'];?> for Sale/Rent in <?= $properties['country'];?>/<?= $properties['state'];?>/<?= $properties['area'];?></h3>
+                    <p>average sunlight:<?= $properties['average_sunlight'];?>days, average rainfall:<?= $properties['average_rainfall'];?>days/ facing road: <?= $properties['facing_road'];?>/ Altitude: <?= $properties['altitude'];?>m</p>
+                    <h5><?= $properties['contact_info'];?></h5>
+                    
+                    <div class="product-price">
+                      <p>surface are:<?= $properties['surface_area'];?>m2</p>
+                      <h4>recommended cultivation: <?= $properties['recom_cult'];?></h4>
+            
+                    </div>
+
+                    <div class="Description">
+                      <textarea maxlength="255" rows="10"  readonly><?= $properties['description'];?></textarea></div>
+                    
+                    
+                    
+                </div>
+              </div>
+
+              <?php  endwhile; endif; endif;
+              if(!isset($_POST['search'])):
+          ?>
           <?php 
-            while($product = mysqli_fetch_assoc($id)):
+            while($properties = mysqli_fetch_assoc($id)):
               
           ?>
 
@@ -86,26 +134,26 @@
 
 
                   <div class="product-info">
-                    <p> <?= $product['property_name'];?>, <?= $product['state'];?>/ <?= $product['country'];?></p>
-                    <h3><?= $product['property_name'];?> for Sale/Rent in <?= $product['country'];?>/<?= $product['state'];?>/<?= $product['area'];?></h3>
-                    <p>average sunlight:<?= $product['average_sunlight'];?>days, average rainfall:<?= $product['average_rainfall'];?>days/ facing road: <?= $product['facing_road'];?>/ Altitude: <?= $product['altitude'];?>m</p>
-                    <h5><?= $product['contact_info'];?></h5>
+                    <p> <?= $properties['property_name'];?>, <?= $properties['state'];?>/ <?= $properties['country'];?></p>
+                    <h3><?= $properties['property_name'];?> for Sale/Rent in <?= $properties['country'];?>/<?= $properties['state'];?>/<?= $properties['area'];?></h3>
+                    <p>average sunlight:<?= $properties['average_sunlight'];?>days, average rainfall:<?= $properties['average_rainfall'];?>days/ facing road: <?= $properties['facing_road'];?>/ Altitude: <?= $properties['altitude'];?>m</p>
+                    <h5><?= $properties['contact_info'];?></h5>
                     
                     <div class="product-price">
-                      <p>surface are:<?= $product['surface_area'];?>m2</p>
-                      <h4>recommended cultivation: <?= $product['recom_cult'];?></h4>
+                      <p>surface are:<?= $properties['surface_area'];?>m2</p>
+                      <h4>recommended cultivation: <?= $properties['recom_cult'];?></h4>
             
                     </div>
 
                     <div class="Description">
-                      <textarea maxlength="255" rows="10"  readonly><?= $product['description'];?></textarea></div>
+                      <textarea maxlength="255" rows="10"  readonly><?= $properties['description'];?></textarea></div>
                     
                     
                     
                 </div>
               </div>
 
-          <?php endwhile; ?>
+          <?php endwhile; endif; ?>
         </div>
       </div>
     </div>
