@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>Digitagrize it</title>
-    <link rel="icon" href="images/icons/favicon.png" />
+    <link rel="icon" href="../images/icons/favicon.png" />
     <meta charset="UTF-8" />
     <meta
       name="viewport"
