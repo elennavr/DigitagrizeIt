@@ -1,8 +1,8 @@
 <?php 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
     <div class="navbar"> 
-    <img class="logoIMG" src="../images/icons/favicon.png" alt="logo">
-    <a class="logo" href="#"> Digitagrize it</a>
+    <img class="logoIMG" src="images/icons/favicon.png" alt="logo">
+    <a class="logo" href="#home"> Digitagrize it</a>
     <a class="toggle-button">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -42,8 +42,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){ ?>
 </div>
 <?php } else { ?>
     <div class="navbar">
-        <img class="logoIMG" src="../images/icons/favicon.png" alt="logo">
-        <a class="logo" href="#"> Digitagrize it</a>
+        <img class="logoIMG" src="images/icons/favicon.png" alt="logo">
+        <a class="logo" href="#home"> Digitagrize it</a>
         <a class="toggle-button">
             <span class="bar"></span>
             <span class="bar"></span>
