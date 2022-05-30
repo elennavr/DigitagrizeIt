@@ -174,9 +174,9 @@
 
     <div class="footer">
       <p>Find Us On:</p>
-      <a href="#" class="fa fa-facebook"></a>
-      <a href="#" class="fa fa-twitter"></a>
-      <a href="#" class="fa fa-linkedin"></a>
+      <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+      <a href="https://www.twitter.com/" class="fa fa-twitter"></a>
+      <a href="https://www.linkedin.com/" class="fa fa-linkedin"></a>
       <p>@digitagrize.it.eu 2022<br /></p>
     </div>
 
